@@ -1,0 +1,7 @@
+# Visual Studio
+.vs
+*.user
+bin/
+obj/
+packages/
+*.dbmdl
