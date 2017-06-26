@@ -7,13 +7,13 @@ namespace LearnerRater.Tests.PageObjects
     public class ResourceSubjectsPage
     {
         private readonly IWebDriver webDriver;
-        private TimeSpan ts = new TimeSpan(0, 0, 10);
-        private WebDriverWait wait;
-        private string url = "web5qa:81/resourceSubjects";
+        private readonly WebDriverWait wait;
+        private string url = "http://web5qa:8090";
 
-        public ResourceSubjectsPage(IWebDriver webDriver)
+        public ResourceSubjectsPage(IWebDriver webDriver, WebDriverWait wait)
         {
             this.webDriver = webDriver;
+            this.wait = wait;
         }
 
         public ResourceSubjectsPage navigateTo()
@@ -24,8 +24,9 @@ namespace LearnerRater.Tests.PageObjects
 
         public ResourcePage selectSubject(string subject)
         {
-            webDriver.FindElement(By.Id(subject)).Click();
-            return new ResourcePage(webDriver);
+            wait.Until(ExpectedConditions.ElementIsVisible(By.PartialLinkText(subject)));
+            webDriver.FindElement(By.PartialLinkText(subject)).Click();
+            return new ResourcePage(webDriver, wait);
         }
     }
 }

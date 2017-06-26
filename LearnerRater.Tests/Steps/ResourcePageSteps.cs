@@ -35,29 +35,31 @@ namespace LearnerRater.Tests.Steps
             resourcePage.toggleReviews();
         }
         
-        [When(@"I enter required fields")]
-        public void WhenIEnterRequiredFields()
-        {
-            resourcePage.addReviewFields();
+        [When(@"I enter (.*), (.*) and (.*)")]
+        [Given(@"I have entered (.*), (.*) and (.*)")]
+        public void WhenIEnter_UserName_StarRating_and_Comments(string userName, string starRating, string comments)
+        {         
+            resourcePage.addReviewFields(userName, starRating, comments);
         }
-        
+
         [When(@"I click the Submit button")]
+        [Given(@"I have clicked the Submit button")]
         public void WhenIClickTheSubmitButton()
         {
-            resourcePage.addReviewButton("btnSubmitRating");
+            resourcePage.addReviewSubmitButton();
         }
         
         [When(@"I click the Cancel button")]
         public void WhenIClickTheCancelButton()
         {
-            resourcePage.addReviewButton("btnCancelRating");
+            resourcePage.addReviewCancelButton();
         }
         
         [Then(@"All the reviews should be displayed")]
         public void ThenAllTheReviewsShouldBeDisplayed()
         {
             resourcePage
-                .containsReviews()
+                .isReviewContainerDisplayed()
                 .Should()
                 .BeTrue();
         }
@@ -66,7 +68,7 @@ namespace LearnerRater.Tests.Steps
         public void ThenAllTheReviewsShouldBeHidden()
         {
             resourcePage
-                .containsReviews()
+                .isReviewContainerDisplayed()
                 .Should()
                 .BeFalse();
         }
@@ -74,50 +76,121 @@ namespace LearnerRater.Tests.Steps
         [Then(@"The button should read Hide Reviews")]
         public void ThenTheButtonShouldReadHideReviews()
         {
-            ScenarioContext.Current.Pending();
+            resourcePage
+                .reviewButtonToggleDisplayText()
+                .Should()
+                .StartWith("HIDE REVIEWS");
         }
 
         [Then(@"The button should read Show Reviews")]
         public void ThenTheButtonShouldReadShowReviews()
         {
-            ScenarioContext.Current.Pending();
+            resourcePage
+                .reviewButtonToggleDisplayText()
+                .Should()
+                .StartWith("SHOW REVIEWS");
         }
 
         [Then(@"The Add Review overlay should appear")]
         public void ThenTheAddReviewOverlayShouldAppear()
         {
-            ScenarioContext.Current.Pending();
+            resourcePage
+                .isAddReviewOverlayDisplayed()
+                .Should()
+                .BeTrue();
         }
         
         [Then(@"The overlay should close")]
         public void ThenTheOverlayShouldClose()
         {
-            ScenarioContext.Current.Pending();
+            resourcePage
+                .isAddReviewOverlayDisplayed()
+                .Should()
+                .BeFalse();
         }
         
-        [Then(@"The review should be added to the resource")]
-        public void ThenTheReviewShouldBeAddedToTheResource()
-        {
-            ScenarioContext.Current.Pending();
+        [Then(@"The review by (.*) should be added to the resource with their (.*)")]
+        [Then(@"The new resource should have (.*) by (.*) listed")]
+        public void ThenTheReviewBy_UserName_ShouldBeAddedToTheResourceWithTheir_Comments(string userName, string comments)
+        {         
+
+            if (!resourcePage.isReviewContainerDisplayed())
+            {
+                resourcePage.toggleReviews();
+            }
+
+            resourcePage
+                .isReviewListed(userName, comments)
+                .Should()
+                .BeTrue();
         }
-        
-        [Then(@"The review should not be added")]
-        public void ThenTheReviewShouldNotBeAdded()
+
+        [Then(@"The total count of reviews for that resource should be incremented by 1")]
+        public void ThenTheTotalCountOfReviewsForThatResourceShouldBeIncrementedBy1()
+        {
+            resourcePage
+                .getReviewCountDifference("BeforeAdd")
+                .Should()
+                .Be(-1);
+        }
+
+        [Then(@"The review by (.*) should not be added to the resource with their (.*)")]
+        public void ThenTheReviewBy_UserName_ShouldNotBeAddedToTheResourceWithTheir_Comments(string userName, string comments)
+        {
+            resourcePage.toggleReviews();
+
+            resourcePage
+                .isReviewListed(userName, comments)
+                .Should()
+                .BeFalse();
+        }
+
+        [Given(@"I have clicked the manage button")]
+        public void GivenIHaveClickedTheManageButton()
+        {
+            resourcePage.toggleManageButton();
+        }
+
+        [When(@"I click the review Delete button")]
+        public void WhenIClickTheReviewDeleteButton()
+        {
+            resourcePage.deleteButton();
+        }
+
+        [Then(@"The review by (.*) with (.*) should be deleted from the resource")]
+        public void ThenTheReviewBy_UserName_ShouldBeDeletedFromTheResource(string userName, string comments)
+        {
+            resourcePage
+                .isReviewListed(userName, comments)
+                .Should()
+                .BeFalse();
+        }
+
+        [Then(@"The total count of reviews for that resource should be reduced by 1")]
+        public void ThenTheTotalCountOfReviewsForThatResourceShouldBeReducedBy1()
+        {
+            resourcePage
+                .getReviewCountDifference("BeforeDelete")
+                .Should()
+                .Be(1);
+        }
+
+        [When(@"I click the resource Delete button")]
+        public void WhenIClickTheResourceDeleteButton()
         {
             ScenarioContext.Current.Pending();
         }
 
-        [When(@"I click the Delete button")]
-        public void WhenIClickTheDeleteButton()
+        [Then(@"The resource should be deleted")]
+        public void ThenTheResourceShouldBeDeleted()
         {
             ScenarioContext.Current.Pending();
         }
 
-        [Then(@"The review should be deleted")]
-        public void ThenTheReviewShouldBeDeleted()
+        [Then(@"The total count of resources for that subject should be reduced by 1")]
+        public void ThenTheTotalCountOfResourcesForThatSubjectShouldBeReducedBy1()
         {
             ScenarioContext.Current.Pending();
         }
-
     }
 }
