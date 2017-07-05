@@ -16,17 +16,18 @@ namespace LearnerRater.Tests.Steps
         }
 
         [When(@"I click the Add Resource Link button")]
+        [Given(@"I have clicked the Add Resource Link button")]
         public void WhenIClickTheAddResourceLinkButton()
         {
             resourcePage.AddNewResource();
         }
         
-        [When(@"I input (.*), (.*), (.*), (.*), (.*), (.*), (.*), (.*) and (.*)")]
-        public void WhenIInput_Subject_Title_Author_Description_Website_Link_Username_Rating_And_Comment(
+        [Given(@"I have entered a resource with (.*), (.*), (.*), (.*), (.*), (.*), (.*), (.*) and (.*)")]
+        public void GivenIHaveEnteredAResourceWith_Subject_Title_Author_Description_Website_Link_Username_Rating_And_Comments(
             string subject, string title, string author, string description, string website, 
-            string link, string userName, string rating, string comment)
+            string link, string userName, string rating, string comments)
         {
-            resourcePage.AddResourceFields(subject, title, author, description, website, link, userName, rating, comment);
+            resourcePage.AddResourceFields(subject, title, author, description, website, link, userName, rating, comments);
         }
         
         [When(@"I click the Resource Submit button")]

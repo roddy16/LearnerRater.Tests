@@ -35,9 +35,8 @@ namespace LearnerRater.Tests.Steps
             resourcePage.ToggleReviews();
         }
 
-        [When(@"I enter (.*), (.*) and (.*)")]
-        [Given(@"I have entered (.*), (.*) and (.*)")]
-        public void WhenIEnter_UserName_StarRating_and_Comments(string userName, string starRating, string comments)
+        [Given(@"I have entered a review with (.*), (.*) and (.*)")]
+        public void GiveIHaveEnteredAReviewWith_UserName_StarRating_and_Comments(string userName, string starRating, string comments)
         {
             resourcePage.AddReviewFields(userName, starRating, comments);
         }

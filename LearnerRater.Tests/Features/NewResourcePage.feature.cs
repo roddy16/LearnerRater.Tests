@@ -94,11 +94,11 @@ this.ScenarioSetup(scenarioInfo);
 #line 12
  testRunner.Given("I have accessed the resources page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 13
- testRunner.When("I click the Add Resource Link button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+  testRunner.And("I have clicked the Add Resource Link button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 14
-  testRunner.And(string.Format("I input {0}, {1}, {2}, {3}, {4}, {5}, {6}, {7} and {8}", subject, title, author, description, website, link, username, rating, comments), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And(string.Format("I have entered a resource with {0}, {1}, {2}, {3}, {4}, {5}, {6}, {7} and {8}", subject, title, author, description, website, link, username, rating, comments), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 15
-  testRunner.And("I click the Resource Submit button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("I click the Resource Submit button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 16
  testRunner.Then(string.Format("I should be redirected to the {0} resource page", subject), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 17
@@ -106,7 +106,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 18
   testRunner.And(string.Format("The new resource should have {0} by {1} listed", comments, username), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 19
-  testRunner.And("The total count of resources should be incremented by 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("The total count of resources for that subject should be incremented by 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -139,11 +139,11 @@ this.ScenarioSetup(scenarioInfo);
 #line 25
  testRunner.Given("I have accessed the resources page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 26
- testRunner.When("I click the Add Resource Link button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+  testRunner.And("I have clicked the Add Resource Link button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 27
-  testRunner.And(string.Format("I input {0}, {1}, {2}, {3}, {4}, {5}, {6}, {7} and {8}", subject, title, author, description, website, link, username, rating, comments), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And(string.Format("I have entered a resource with {0}, {1}, {2}, {3}, {4}, {5}, {6}, {7} and {8}", subject, title, author, description, website, link, username, rating, comments), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 28
-  testRunner.And("I click the Resource Cancel button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("I click the Resource Cancel button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 29
  testRunner.Then("The new resource should not be added to the resource page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden

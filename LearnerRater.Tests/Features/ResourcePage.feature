@@ -11,8 +11,8 @@ Scenario: Show Reviews
 
 Scenario: Hide Reviews 
 	Given I have accessed the resources page
-	When I click Show Reviews
-		And I click Hide Reviews
+		And I have clicked Show Reviews
+	When I click Hide Reviews
 	Then All the reviews should be hidden
 		And The button should read Show Reviews
 
@@ -24,8 +24,8 @@ Scenario: Display Review Overlay
 Scenario Outline: Add a Review
 	Given I have accessed the resources page
 		And I have opened the Add Review overlay
-	When I enter <username>, <starRating> and <comments>
-		And I click the Submit button
+		And I have entered a review with <username>, <starRating> and <comments>
+	When I click the Submit button
 	Then The overlay should close
 		And The review by <username> should be added to the resource with their <comments>
 		And The total count of reviews for that resource should be incremented by 1
@@ -36,8 +36,8 @@ Scenario Outline: Add a Review
 Scenario Outline: Cancel Adding a Review
 	Given I have accessed the resources page
 		And I have opened the Add Review overlay
-	When I enter <username>, <starRating> and <comments>
-		And I click the Cancel button
+		And I have entered a review with <username>, <starRating> and <comments>
+	When I click the Cancel button
 	Then The overlay should close
 		And The review by <username> should not be added to the resource with their <comments>
 	Examples: 
