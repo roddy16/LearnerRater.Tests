@@ -145,28 +145,31 @@ this.ScenarioSetup(scenarioInfo);
 #line 28
  testRunner.When("I click the Resource Cancel button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 29
- testRunner.Then("The new resource should not be added to the resource page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("The form should close", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 30
+  testRunner.And(string.Format("The new resource {0} by {1} about {2} on {3} at {4} should not be added to the re" +
+                        "source page", title, author, description, website, link), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Cancel a New Resource: NCrunch")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Cancel a New Resource: JavaScript")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "NewResourcePage")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "NCrunch")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:subject", "NCrunch")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:title", "Crunching N Time")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:author", "Dr. Suess")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:description", "Learn all about NCrunch")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:website", "LearnStuff")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:link", "http://learnstuff.com/")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "JavaScript")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:subject", "JavaScript")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:title", "JavaScript Not Java")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:author", "J.S. Manwell")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:description", "Learn javascript not Java")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:website", "JS Site")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:link", "http://jssite.com/")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:username", "sRods")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:rating", "Rating_5")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:comments", "It was awesome!!!!")]
-        public virtual void CancelANewResource_NCrunch()
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:rating", "Rating_1")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:comments", "It was meh!!!!")]
+        public virtual void CancelANewResource_JavaScript()
         {
 #line 24
-this.CancelANewResource("NCrunch", "Crunching N Time", "Dr. Suess", "Learn all about NCrunch", "LearnStuff", "http://learnstuff.com/", "sRods", "Rating_5", "It was awesome!!!!", ((string[])(null)));
+this.CancelANewResource("JavaScript", "JavaScript Not Java", "J.S. Manwell", "Learn javascript not Java", "JS Site", "http://jssite.com/", "sRods", "Rating_1", "It was meh!!!!", ((string[])(null)));
 #line hidden
         }
     }

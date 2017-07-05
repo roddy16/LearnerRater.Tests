@@ -189,12 +189,23 @@ namespace LearnerRater.Tests.PageObjects
 
         public bool IsResourceListed(string title, string author, string description, string website, string link)
         {
-            var resourceLink = webDriver.FindElement(By.LinkText(title)).GetAttribute("href");
+            var scenarioTitle = ScenarioContext.Current.ScenarioInfo.Title;
+            
+            if (!scenarioTitle.Equals("Cancel a New Resource"))
+            {
+                var resourceLink = webDriver.FindElement(By.LinkText(title)).GetAttribute("href");
+
+                return (ResourceList[0].Text.Contains(title)
+                    && ResourceList[0].Text.Contains(author)
+                    && ResourceList[0].Text.Contains(description)
+                    && ResourceList[0].Text.Contains(website))
+                    && link.Equals(resourceLink) ? true : false;
+            }
+
             return (ResourceList[0].Text.Contains(title)
-                && ResourceList[0].Text.Contains(author)
-                && ResourceList[0].Text.Contains(description)
-                && ResourceList[0].Text.Contains(website))
-                && link.Equals(resourceLink) ? true : false;
+                 && ResourceList[0].Text.Contains(author)
+                 && ResourceList[0].Text.Contains(description)
+                 && ResourceList[0].Text.Contains(website)) ? true : false;
         }
 
         public int GetResourceCountDifference(string key)
@@ -216,6 +227,11 @@ namespace LearnerRater.Tests.PageObjects
         {
             CancelResourceButton.Click();
             return this;
+        }
+
+        public bool IsAddResourceFormDisplayed()
+        {
+            return webDriver.FindElements(By.ClassName("form--add-resource")).Count > 0 ? true : false;
         }
     }
 }

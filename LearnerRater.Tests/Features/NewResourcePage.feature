@@ -26,7 +26,8 @@ Scenario Outline: Cancel a New Resource
 		And I have clicked the Add Resource Link button
 		And I have entered a resource with <subject>, <title>, <author>, <description>, <website>, <link>, <username>, <rating> and <comments>
 	When I click the Resource Cancel button
-	Then The new resource should not be added to the resource page
+	Then The form should close
+		And The new resource <title> by <author> about <description> on <website> at <link> should not be added to the resource page
 	Examples: 
-	| subject | title            | author    | description             | website    | link					 | username | rating   | comments           |
-	| NCrunch | Crunching N Time | Dr. Suess | Learn all about NCrunch | LearnStuff | http://learnstuff.com/ | sRods    | Rating_5 | It was awesome!!!! |
+	| subject	 | title		       | author       | description                 | website | link				  | username | rating   | comments       |
+	| JavaScript | JavaScript Not Java | J.S. Manwell | Learn javascript not Java   | JS Site | http://jssite.com/    | sRods    | Rating_1 | It was meh!!!! |

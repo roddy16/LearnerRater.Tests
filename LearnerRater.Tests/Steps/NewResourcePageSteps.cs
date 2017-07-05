@@ -79,10 +79,23 @@ namespace LearnerRater.Tests.Steps
                 .Be(-1);
         }
 
-        [Then(@"The new resource should not be added to the resource page")]
-        public void ThenTheNewResourceShouldNotBeAddedToTheResourcePage()
+        [Then(@"The form should close")]
+        public void ThenTheFormShouldClose()
+        {         
+            resourcePage
+                .IsAddResourceFormDisplayed()
+                .Should()
+                .BeFalse();
+        }
+
+        [Then(@"The new resource (.*) by (.*) about (.*) on (.*) at (.*) should not be added to the resource page")]
+        public void ThenTheNewResource_Title_By_Author_About_Description_On_Website_At_Link_ShouldNotBeAddedToTheResourcePage(
+            string title, string author, string description, string website, string link)
         {
-            ScenarioContext.Current.Pending();
+            resourcePage
+                .IsResourceListed(title, author, description, website, link)
+                .Should()
+                .BeFalse();
         }
     }
 }
