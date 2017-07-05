@@ -1,12 +1,11 @@
-﻿using LearnerRater.Tests.Steps;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Threading;
 using TechTalk.SpecFlow;
-using TechTalk.SpecFlow.Assist;
 
 namespace LearnerRater.Tests.PageObjects
 {
@@ -14,8 +13,8 @@ namespace LearnerRater.Tests.PageObjects
     {
         private readonly IWebDriver webDriver;
         private readonly WebDriverWait wait;
-        private string baseUrl = "http://web5qa:8090";
-        private string url = "http://web5qa:8090/resources/NCrunch";
+        private static string baseUrl = ConfigurationManager.AppSettings["BaseUrl"];
+        private static string url = $"{baseUrl}/resources/NCrunch";
 
         public IWebElement toggleReviewsButton => webDriver.FindElement(By.Id("btnToggleReviewVisibility"));
         public IWebElement addReviewButton => webDriver.FindElement(By.Id("btnAddReview"));

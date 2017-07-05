@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using System;
+using System.Configuration;
 
 namespace LearnerRater.Tests.PageObjects
 {
@@ -8,7 +8,7 @@ namespace LearnerRater.Tests.PageObjects
     {
         private readonly IWebDriver webDriver;
         private readonly WebDriverWait wait;
-        private string url = "http://web5qa:8090";
+        private static string url = ConfigurationManager.AppSettings["BaseUrl"];
 
         public ResourceSubjectsPage(IWebDriver webDriver, WebDriverWait wait)
         {
