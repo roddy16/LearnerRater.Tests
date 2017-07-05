@@ -16,27 +16,27 @@ namespace LearnerRater.Tests.PageObjects
         private static string baseUrl = ConfigurationManager.AppSettings["BaseUrl"];
         private static string url = $"{baseUrl}/resources/NCrunch";
 
-        public IWebElement toggleReviewsButton => webDriver.FindElement(By.Id("btnToggleReviewVisibility"));
-        public IWebElement addReviewButton => webDriver.FindElement(By.Id("btnAddReview"));
-        public IWebElement submitReviewButton => webDriver.FindElement(By.Id("btnSubmitRating"));
-        public IWebElement cancelReviewButton => webDriver.FindElement(By.Id("btnCancelRating"));
-        public IWebElement usernameInput => webDriver.FindElement(By.Id("inputUsername"));
-        public IWebElement starRating(string starRating) => webDriver.FindElement(By.Id(starRating));
-        public IWebElement userComment => webDriver.FindElement(By.Id("inputComment"));
-        public IWebElement manageButton => webDriver.FindElement(By.Id("btnToggleManage"));
-        public IWebElement deleteReviewButton(int reviewCount) => webDriver.FindElement(By.Id("btnDeleteReview_" + (reviewCount - 1)));
-        public IWebElement addNewResourceLinkButton => webDriver.FindElement(By.Id("btnAddCourse"));
-        public SelectElement resourceCategory => new SelectElement(webDriver.FindElement(By.Id("category")));
-        public IWebElement resourceTitle => webDriver.FindElement(By.Id("Title"));
-        public IWebElement resourceAuthor => webDriver.FindElement(By.Id("Author"));
-        public IWebElement resourceDescription => webDriver.FindElement(By.Id("Description"));
-        public IWebElement resourceWebsite => webDriver.FindElement(By.Id("Website"));
-        public IWebElement resourceLink => webDriver.FindElement(By.Id("URL"));
-        public IWebElement submitResourceButton => webDriver.FindElement(By.Id("btnSubmitCourse"));
-        public IWebElement cancelResourceButton => webDriver.FindElement(By.Id("btnCancelCourse"));
+        public IWebElement ToggleReviewsButton => webDriver.FindElement(By.Id("btnToggleReviewVisibility"));
+        public IWebElement AddReviewButton => webDriver.FindElement(By.Id("btnAddReview"));
+        public IWebElement SubmitReviewButton => webDriver.FindElement(By.Id("btnSubmitRating"));
+        public IWebElement CancelReviewButton => webDriver.FindElement(By.Id("btnCancelRating"));
+        public IWebElement UsernameInput => webDriver.FindElement(By.Id("inputUsername"));
+        public IWebElement StarRating(string starRating) => webDriver.FindElement(By.Id(starRating));
+        public IWebElement UserComment => webDriver.FindElement(By.Id("inputComment"));
+        public IWebElement ManageButton => webDriver.FindElement(By.Id("btnToggleManage"));
+        public IWebElement DeleteReviewButton(int reviewCount) => webDriver.FindElement(By.Id("btnDeleteReview_" + (reviewCount - 1)));
+        public IWebElement AddNewResourceLinkButton => webDriver.FindElement(By.Id("btnAddCourse"));
+        public SelectElement ResourceCategory => new SelectElement(webDriver.FindElement(By.Id("category")));
+        public IWebElement ResourceTitle => webDriver.FindElement(By.Id("Title"));
+        public IWebElement ResourceAuthor => webDriver.FindElement(By.Id("Author"));
+        public IWebElement ResourceDescription => webDriver.FindElement(By.Id("Description"));
+        public IWebElement ResourceWebsite => webDriver.FindElement(By.Id("Website"));
+        public IWebElement ResourceLink => webDriver.FindElement(By.Id("URL"));
+        public IWebElement SubmitResourceButton => webDriver.FindElement(By.Id("btnSubmitCourse"));
+        public IWebElement CancelResourceButton => webDriver.FindElement(By.Id("btnCancelCourse"));
 
-        public IList<IWebElement> userReviews => webDriver.FindElements(By.CssSelector("div[id ^= 'reviewListContainer']"));
-        public IList<IWebElement> resourceList => webDriver.FindElements(By.CssSelector("#app > div > div > div > div:nth-child(3) > div.resource-list-container"));
+        public IList<IWebElement> UserReviews => webDriver.FindElements(By.CssSelector("div[id ^= 'reviewListContainer']"));
+        public IList<IWebElement> ResourceList => webDriver.FindElements(By.CssSelector("#app > div > div > div > div:nth-child(3) > div.resource-list-container"));
 
         public ResourcePage(IWebDriver webDriver, WebDriverWait wait)
         {
@@ -44,177 +44,177 @@ namespace LearnerRater.Tests.PageObjects
             this.wait = wait;
         }
 
-        public ResourcePage navigateTo()
+        public ResourcePage NavigateTo()
         {
             webDriver.Navigate().GoToUrl(url);
             return this;
         }
 
-        public bool isCorrectResourcePageDisplayed(string subject)
+        public bool IsCorrectResourcePageDisplayed(string subject)
         {
             return webDriver.Url.Equals(baseUrl + "/resources/" + subject) ? true : false;
         }
 
-        public ResourcePage toggleReviews()
+        public ResourcePage ToggleReviews()
         {
             wait.Until(ExpectedConditions.ElementIsVisible(By.Id("btnToggleReviewVisibility")));
-            toggleReviewsButton.Click();
+            ToggleReviewsButton.Click();
             return this;
         }
 
-        public bool isReviewContainerDisplayed()
+        public bool IsReviewContainerDisplayed()
         {
             //TODO find a more graceful way to handle this scenario. Without the thread.sleep call, the 'hidereviews' test fails because the browswer refreshes slower than the driver navigates
             Thread.Sleep(1000);
-            return !userReviews.ElementAt(0).GetAttribute("style").Equals("display: none;");
+            return !UserReviews.ElementAt(0).GetAttribute("style").Equals("display: none;");
         }
 
-        public string reviewButtonToggleDisplayText()
+        public string ReviewButtonToggleDisplayText()
         {
-            return toggleReviewsButton.Text;
+            return ToggleReviewsButton.Text;
         }
 
-        public ResourcePage openAddReviewOverlay()
+        public ResourcePage OpenAddReviewOverlay()
         {
             wait.Until(ExpectedConditions.ElementIsVisible(By.Id("btnAddReview")));
-            addReviewButton.Click();
+            AddReviewButton.Click();
             return this;
         }
 
-        public bool isAddReviewOverlayDisplayed()
+        public bool IsAddReviewOverlayDisplayed()
         {
             return webDriver.FindElements(By.ClassName("overlay-container")).Count > 0 ? true : false;
         }
 
-        public ResourcePage addReviewSubmitButton()
+        public ResourcePage AddReviewSubmitButton()
         {
-            int reviewCount = getNumberOfReviews();
-            addToScenarioContext("BeforeAdd", reviewCount);
+            int reviewCount = GetNumberOfReviews();
+            AddToScenarioContext("BeforeAdd", reviewCount);
 
-            submitReviewButton.Click();
+            SubmitReviewButton.Click();
             return this;
         }
 
-        public ResourcePage addReviewCancelButton()
+        public ResourcePage AddReviewCancelButton()
         {
-            cancelReviewButton.Click();
+            CancelReviewButton.Click();
             return this;
         }
 
-        public ResourcePage addReviewFields(string userName, string stars, string comments)
+        public ResourcePage AddReviewFields(string userName, string stars, string comments)
         {
-            usernameInput.SendKeys(userName);
-            starRating(stars).Click();
-            userComment.SendKeys(comments);
+            UsernameInput.SendKeys(userName);
+            StarRating(stars).Click();
+            UserComment.SendKeys(comments);
             return this;
         }
 
-        public bool isReviewListed(string userName, string comments)
+        public bool IsReviewListed(string userName, string comments)
         {
             wait.Until(ExpectedConditions.ElementIsVisible(By.Id("Rating_5")));
-            return (userReviews[0].Text.Contains(userName) && userReviews[0].Text.Contains(comments)) ? true : false;
+            return (UserReviews[0].Text.Contains(userName) && UserReviews[0].Text.Contains(comments)) ? true : false;
         }
 
-        public ResourcePage toggleManageButton()
+        public ResourcePage ToggleManageButton()
         {
-            manageButton.Click();
+            ManageButton.Click();
             return this;
         }
 
-        public ResourcePage deleteButton()
+        public ResourcePage DeleteButton()
         {
-            int reviewCount = getNumberOfReviews();
-            addToScenarioContext("BeforeDelete", reviewCount);
+            int reviewCount = GetNumberOfReviews();
+            AddToScenarioContext("BeforeDelete", reviewCount);
 
             wait.Until(ExpectedConditions.ElementIsVisible(By.Id("btnDeleteReview_" + (reviewCount - 1))));
-            deleteReviewButton(reviewCount).Click();
+            DeleteReviewButton(reviewCount).Click();
             return this;
         }
 
-        public int getReviewCountDifference(string key)
+        public int GetReviewCountDifference(string key)
         {
-            int reviewCount = getNumberOfReviews();
+            int reviewCount = GetNumberOfReviews();
             int beforeActionCount = (int)ScenarioContext.Current[key];
 
             return beforeActionCount - reviewCount;
         }
 
-        public int getNumberOfReviews()
+        public int GetNumberOfReviews()
         {
-            string[] numberOfReviews = toggleReviewsButton.Text.Split('/');
+            string[] numberOfReviews = ToggleReviewsButton.Text.Split('/');
 
             return Convert.ToInt32(numberOfReviews[1]);
         }
 
-        public void addToScenarioContext(string index, int value)
+        public void AddToScenarioContext(string index, int value)
         {
             ScenarioContext.Current.Add(index, value);
         }
 
-        public ResourcePage addNewResource()
+        public ResourcePage AddNewResource()
         {
-            int resourceCount = getNumberOfResources();
-            addToScenarioContext("BeforeAdd", resourceCount);
+            int resourceCount = GetNumberOfResources();
+            AddToScenarioContext("BeforeAdd", resourceCount);
 
-            addNewResourceLinkButton.Click();
+            AddNewResourceLinkButton.Click();
             return this;
         }
 
-        public bool doesAddResourceFormExist()
+        public bool DoesAddResourceFormExist()
         {
             return webDriver.FindElements(By.ClassName("form--add-resource")).Count > 0 ? true : false;
         }
 
-        public ResourcePage addResourceFields(
+        public ResourcePage AddResourceFields(
             string subject, string title, string author, string description, string website,
             string link, string userName, string rating, string comments)
         {
-            resourceCategory.SelectByText(subject);
-            resourceTitle.SendKeys(title);
-            resourceAuthor.SendKeys(author);
-            resourceDescription.SendKeys(description);
-            resourceWebsite.SendKeys(website);
-            resourceLink.SendKeys(link);
-            usernameInput.SendKeys(userName);
-            starRating(rating).Click();
-            userComment.SendKeys(comments);
+            ResourceCategory.SelectByText(subject);
+            ResourceTitle.SendKeys(title);
+            ResourceAuthor.SendKeys(author);
+            ResourceDescription.SendKeys(description);
+            ResourceWebsite.SendKeys(website);
+            ResourceLink.SendKeys(link);
+            UsernameInput.SendKeys(userName);
+            StarRating(rating).Click();
+            UserComment.SendKeys(comments);
             return this;
         }
 
-        public ResourcePage addResourceSubmitButton()
+        public ResourcePage AddResourceSubmitButton()
         {
-            submitResourceButton.Click();
+            SubmitResourceButton.Click();
             return this;
         }
 
-        public bool isResourceListed(string title, string author, string description, string website, string link)
+        public bool IsResourceListed(string title, string author, string description, string website, string link)
         {
             var resourceLink = webDriver.FindElement(By.LinkText(title)).GetAttribute("href");
-            return (resourceList[0].Text.Contains(title)
-                && resourceList[0].Text.Contains(author)
-                && resourceList[0].Text.Contains(description)
-                && resourceList[0].Text.Contains(website))
+            return (ResourceList[0].Text.Contains(title)
+                && ResourceList[0].Text.Contains(author)
+                && ResourceList[0].Text.Contains(description)
+                && ResourceList[0].Text.Contains(website))
                 && link.Equals(resourceLink) ? true : false;
         }
 
-        public int getResourceCountDifference(string key)
+        public int GetResourceCountDifference(string key)
         {
-            int resourceCount = getNumberOfResources();
+            int resourceCount = GetNumberOfResources();
             int beforeActionCount = (int)ScenarioContext.Current[key];
 
             return beforeActionCount - resourceCount;
         }
 
-        public int getNumberOfResources()
+        public int GetNumberOfResources()
         {
             string numberOfResources = webDriver.FindElement(By.ClassName("badge")).Text;
 
             return Convert.ToInt32(numberOfResources);
         }
 
-        public ResourcePage addResourceCancelButton()
+        public ResourcePage AddResourceCancelButton()
         {
-            cancelResourceButton.Click();
+            CancelResourceButton.Click();
             return this;
         }
     }

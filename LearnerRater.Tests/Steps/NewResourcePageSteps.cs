@@ -18,7 +18,7 @@ namespace LearnerRater.Tests.Steps
         [When(@"I click the Add Resource Link button")]
         public void WhenIClickTheAddResourceLinkButton()
         {
-            resourcePage.addNewResource();
+            resourcePage.AddNewResource();
         }
         
         [When(@"I input (.*), (.*), (.*), (.*), (.*), (.*), (.*), (.*) and (.*)")]
@@ -26,26 +26,26 @@ namespace LearnerRater.Tests.Steps
             string subject, string title, string author, string description, string website, 
             string link, string userName, string rating, string comment)
         {
-            resourcePage.addResourceFields(subject, title, author, description, website, link, userName, rating, comment);
+            resourcePage.AddResourceFields(subject, title, author, description, website, link, userName, rating, comment);
         }
         
         [When(@"I click the Resource Submit button")]
         public void WhenIClickTheResourceSubmitButton()
         {
-            resourcePage.addResourceSubmitButton();
+            resourcePage.AddResourceSubmitButton();
         }
         
         [When(@"I click the Resource Cancel button")]
         public void WhenIClickTheResourceCancelButton()
         {
-            resourcePage.addResourceCancelButton();
+            resourcePage.AddResourceCancelButton();
         }
         
         [Then(@"The add new resource link form should be displayed")]
         public void ThenTheAddNewResourceLinkFormShouldBeDisplayed()
         {
             resourcePage
-                .doesAddResourceFormExist()
+                .DoesAddResourceFormExist()
                 .Should()
                 .BeTrue();
         }
@@ -54,7 +54,7 @@ namespace LearnerRater.Tests.Steps
         public void ThenIShouldBeRedirectedToThe_Subject_ResourcePage(string subject)
         {
             resourcePage
-                .isCorrectResourcePageDisplayed(subject)
+                .IsCorrectResourcePageDisplayed(subject)
                 .Should()
                 .BeTrue();
         }
@@ -64,7 +64,7 @@ namespace LearnerRater.Tests.Steps
             string title, string author, string description, string website, string link)
         {
             resourcePage
-                .isResourceListed(title, author, description, website, link)
+                .IsResourceListed(title, author, description, website, link)
                 .Should()
                 .BeTrue();
         }
@@ -73,7 +73,7 @@ namespace LearnerRater.Tests.Steps
         public void ThenTheTotalCountOfResourcesForThatSubjectShouldBeIncrementedBy1()
         {
             resourcePage
-                .getResourceCountDifference("BeforeAdd")
+                .GetResourceCountDifference("BeforeAdd")
                 .Should()
                 .Be(-1);
         }

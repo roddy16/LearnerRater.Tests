@@ -16,13 +16,13 @@ namespace LearnerRater.Tests.PageObjects
             this.wait = wait;
         }
 
-        public ResourceSubjectsPage navigateTo()
+        public ResourceSubjectsPage NavigateTo()
         {
             webDriver.Navigate().GoToUrl(url);
             return this;
         }
 
-        public ResourcePage selectSubject(string subject)
+        public ResourcePage SelectSubject(string subject)
         {
             wait.Until(ExpectedConditions.ElementIsVisible(By.PartialLinkText(subject)));
             webDriver.FindElement(By.PartialLinkText(subject)).Click();

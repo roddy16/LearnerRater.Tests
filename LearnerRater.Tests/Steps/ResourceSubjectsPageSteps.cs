@@ -19,20 +19,20 @@ namespace LearnerRater.Tests.Steps
         [Given(@"I have accessed the resource subjects page")]
         public void GivenIHaveAccessedTheResourceSubjectsPage()
         {
-            resourceSubjectsPage.navigateTo();
+            resourceSubjectsPage.NavigateTo();
         }
 
         [When(@"I click the (.*) link")]
         public void WhenIClickThe_Subject_Link(string subject)
         {
-            resourceSubjectsPage.selectSubject(subject);
+            resourceSubjectsPage.SelectSubject(subject);
         }
 
         [Then(@"The resource page should be loaded for (.*) resources")]
         public void ThenTheResourcePageShouldBeLoadedFor_Subject_Resources(string subject)
         {
             resourcePage
-                .isCorrectResourcePageDisplayed(subject)
+                .IsCorrectResourcePageDisplayed(subject)
                 .Should()
                 .BeTrue();
         }

@@ -17,14 +17,14 @@ namespace LearnerRater.Tests.Steps
         [Given(@"I have accessed the resources page")]
         public void GivenIHaveAccessedTheResourcesPage()
         {
-            resourcePage.navigateTo();
+            resourcePage.NavigateTo();
         }
 
         [When(@"I click You Be The Judge button")]
         [Given(@"I have opened the Add Review overlay")]
         public void GivenIHaveOpenedTheAddReviewOverlay()
         {
-            resourcePage.openAddReviewOverlay();
+            resourcePage.OpenAddReviewOverlay();
         }
 
         [When(@"I click Show Reviews")]
@@ -32,34 +32,34 @@ namespace LearnerRater.Tests.Steps
         [Given(@"I have clicked Show Reviews")]
         public void WhenIClickShowReviews()
         {
-            resourcePage.toggleReviews();
+            resourcePage.ToggleReviews();
         }
 
         [When(@"I enter (.*), (.*) and (.*)")]
         [Given(@"I have entered (.*), (.*) and (.*)")]
         public void WhenIEnter_UserName_StarRating_and_Comments(string userName, string starRating, string comments)
         {
-            resourcePage.addReviewFields(userName, starRating, comments);
+            resourcePage.AddReviewFields(userName, starRating, comments);
         }
 
         [When(@"I click the Submit button")]
         [Given(@"I have clicked the Submit button")]
         public void WhenIClickTheSubmitButton()
         {
-            resourcePage.addReviewSubmitButton();
+            resourcePage.AddReviewSubmitButton();
         }
 
         [When(@"I click the Cancel button")]
         public void WhenIClickTheCancelButton()
         {
-            resourcePage.addReviewCancelButton();
+            resourcePage.AddReviewCancelButton();
         }
 
         [Then(@"All the reviews should be displayed")]
         public void ThenAllTheReviewsShouldBeDisplayed()
         {
             resourcePage
-                .isReviewContainerDisplayed()
+                .IsReviewContainerDisplayed()
                 .Should()
                 .BeTrue();
         }
@@ -68,7 +68,7 @@ namespace LearnerRater.Tests.Steps
         public void ThenAllTheReviewsShouldBeHidden()
         {
             resourcePage
-                .isReviewContainerDisplayed()
+                .IsReviewContainerDisplayed()
                 .Should()
                 .BeFalse();
         }
@@ -77,7 +77,7 @@ namespace LearnerRater.Tests.Steps
         public void ThenTheButtonShouldReadHideReviews()
         {
             resourcePage
-                .reviewButtonToggleDisplayText()
+                .ReviewButtonToggleDisplayText()
                 .Should()
                 .StartWith("HIDE REVIEWS");
         }
@@ -86,7 +86,7 @@ namespace LearnerRater.Tests.Steps
         public void ThenTheButtonShouldReadShowReviews()
         {
             resourcePage
-                .reviewButtonToggleDisplayText()
+                .ReviewButtonToggleDisplayText()
                 .Should()
                 .StartWith("SHOW REVIEWS");
         }
@@ -95,7 +95,7 @@ namespace LearnerRater.Tests.Steps
         public void ThenTheAddReviewOverlayShouldAppear()
         {
             resourcePage
-                .isAddReviewOverlayDisplayed()
+                .IsAddReviewOverlayDisplayed()
                 .Should()
                 .BeTrue();
         }
@@ -104,7 +104,7 @@ namespace LearnerRater.Tests.Steps
         public void ThenTheOverlayShouldClose()
         {
             resourcePage
-                .isAddReviewOverlayDisplayed()
+                .IsAddReviewOverlayDisplayed()
                 .Should()
                 .BeFalse();
         }
@@ -113,10 +113,10 @@ namespace LearnerRater.Tests.Steps
         [Then(@"The new resource should have (.*) by (.*) listed")]
         public void ThenTheReviewBy_UserName_ShouldBeAddedToTheResourceWithTheir_Comments(string userName, string comments)
         {
-            resourcePage.toggleReviews();
+            resourcePage.ToggleReviews();
 
             resourcePage
-                .isReviewListed(userName, comments)
+                .IsReviewListed(userName, comments)
                 .Should()
                 .BeTrue();
         }
@@ -125,7 +125,7 @@ namespace LearnerRater.Tests.Steps
         public void ThenTheTotalCountOfReviewsForThatResourceShouldBeIncrementedBy1()
         {
             resourcePage
-                .getReviewCountDifference("BeforeAdd")
+                .GetReviewCountDifference("BeforeAdd")
                 .Should()
                 .Be(-1);
         }
@@ -133,10 +133,10 @@ namespace LearnerRater.Tests.Steps
         [Then(@"The review by (.*) should not be added to the resource with their (.*)")]
         public void ThenTheReviewBy_UserName_ShouldNotBeAddedToTheResourceWithTheir_Comments(string userName, string comments)
         {
-            resourcePage.toggleReviews();
+            resourcePage.ToggleReviews();
 
             resourcePage
-                .isReviewListed(userName, comments)
+                .IsReviewListed(userName, comments)
                 .Should()
                 .BeFalse();
         }
@@ -144,20 +144,20 @@ namespace LearnerRater.Tests.Steps
         [Given(@"I have clicked the manage button")]
         public void GivenIHaveClickedTheManageButton()
         {
-            resourcePage.toggleManageButton();
+            resourcePage.ToggleManageButton();
         }
 
         [When(@"I click the review Delete button")]
         public void WhenIClickTheReviewDeleteButton()
         {
-            resourcePage.deleteButton();
+            resourcePage.DeleteButton();
         }
 
         [Then(@"The review by (.*) with (.*) should be deleted from the resource")]
         public void ThenTheReviewBy_UserName_ShouldBeDeletedFromTheResource(string userName, string comments)
         {
             resourcePage
-                .isReviewListed(userName, comments)
+                .IsReviewListed(userName, comments)
                 .Should()
                 .BeFalse();
         }
@@ -166,7 +166,7 @@ namespace LearnerRater.Tests.Steps
         public void ThenTheTotalCountOfReviewsForThatResourceShouldBeReducedBy1()
         {
             resourcePage
-                .getReviewCountDifference("BeforeDelete")
+                .GetReviewCountDifference("BeforeDelete")
                 .Should()
                 .Be(1);
         }
