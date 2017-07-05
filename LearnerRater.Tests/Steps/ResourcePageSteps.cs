@@ -19,14 +19,14 @@ namespace LearnerRater.Tests.Steps
         {
             resourcePage.navigateTo();
         }
-        
+
         [When(@"I click You Be The Judge button")]
         [Given(@"I have opened the Add Review overlay")]
         public void GivenIHaveOpenedTheAddReviewOverlay()
         {
             resourcePage.openAddReviewOverlay();
         }
-        
+
         [When(@"I click Show Reviews")]
         [When(@"I click Hide Reviews")]
         [Given(@"I have clicked Show Reviews")]
@@ -34,11 +34,11 @@ namespace LearnerRater.Tests.Steps
         {
             resourcePage.toggleReviews();
         }
-        
+
         [When(@"I enter (.*), (.*) and (.*)")]
         [Given(@"I have entered (.*), (.*) and (.*)")]
         public void WhenIEnter_UserName_StarRating_and_Comments(string userName, string starRating, string comments)
-        {         
+        {
             resourcePage.addReviewFields(userName, starRating, comments);
         }
 
@@ -48,13 +48,13 @@ namespace LearnerRater.Tests.Steps
         {
             resourcePage.addReviewSubmitButton();
         }
-        
+
         [When(@"I click the Cancel button")]
         public void WhenIClickTheCancelButton()
         {
             resourcePage.addReviewCancelButton();
         }
-        
+
         [Then(@"All the reviews should be displayed")]
         public void ThenAllTheReviewsShouldBeDisplayed()
         {
@@ -63,7 +63,7 @@ namespace LearnerRater.Tests.Steps
                 .Should()
                 .BeTrue();
         }
-        
+
         [Then(@"All the reviews should be hidden")]
         public void ThenAllTheReviewsShouldBeHidden()
         {
@@ -99,7 +99,7 @@ namespace LearnerRater.Tests.Steps
                 .Should()
                 .BeTrue();
         }
-        
+
         [Then(@"The overlay should close")]
         public void ThenTheOverlayShouldClose()
         {
@@ -108,16 +108,12 @@ namespace LearnerRater.Tests.Steps
                 .Should()
                 .BeFalse();
         }
-        
+
         [Then(@"The review by (.*) should be added to the resource with their (.*)")]
         [Then(@"The new resource should have (.*) by (.*) listed")]
         public void ThenTheReviewBy_UserName_ShouldBeAddedToTheResourceWithTheir_Comments(string userName, string comments)
-        {         
-
-            if (!resourcePage.isReviewContainerDisplayed())
-            {
-                resourcePage.toggleReviews();
-            }
+        {
+            resourcePage.toggleReviews();
 
             resourcePage
                 .isReviewListed(userName, comments)

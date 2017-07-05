@@ -24,7 +24,7 @@ namespace LearnerRater.Tests.PageObjects
         public IWebElement starRating(string starRating) => webDriver.FindElement(By.Id(starRating));
         public IWebElement userComment => webDriver.FindElement(By.Id("inputComment"));
         public IWebElement manageButton => webDriver.FindElement(By.Id("btnToggleManage"));
-        public IWebElement deleteReviewButton(int reviewCount) =>  webDriver.FindElement(By.Id("btnDeleteReview_" + (reviewCount - 1)));
+        public IWebElement deleteReviewButton(int reviewCount) => webDriver.FindElement(By.Id("btnDeleteReview_" + (reviewCount - 1)));
         public IWebElement addNewResourceLinkButton => webDriver.FindElement(By.Id("btnAddCourse"));
         public SelectElement resourceCategory => new SelectElement(webDriver.FindElement(By.Id("category")));
         public IWebElement resourceTitle => webDriver.FindElement(By.Id("Title"));
@@ -37,7 +37,7 @@ namespace LearnerRater.Tests.PageObjects
 
         public IList<IWebElement> userReviews => webDriver.FindElements(By.CssSelector("div[id ^= 'reviewListContainer']"));
         public IList<IWebElement> resourceList => webDriver.FindElements(By.CssSelector("#app > div > div > div > div:nth-child(3) > div.resource-list-container"));
-        
+
         public ResourcePage(IWebDriver webDriver, WebDriverWait wait)
         {
             this.webDriver = webDriver;
@@ -102,7 +102,7 @@ namespace LearnerRater.Tests.PageObjects
         }
 
         public ResourcePage addReviewFields(string userName, string stars, string comments)
-        {        
+        {
             usernameInput.SendKeys(userName);
             starRating(stars).Click();
             userComment.SendKeys(comments);
@@ -111,6 +111,7 @@ namespace LearnerRater.Tests.PageObjects
 
         public bool isReviewListed(string userName, string comments)
         {
+            wait.Until(ExpectedConditions.ElementIsVisible(By.Id("Rating_5")));
             return (userReviews[0].Text.Contains(userName) && userReviews[0].Text.Contains(comments)) ? true : false;
         }
 
@@ -189,9 +190,9 @@ namespace LearnerRater.Tests.PageObjects
         public bool isResourceListed(string title, string author, string description, string website, string link)
         {
             var resourceLink = webDriver.FindElement(By.LinkText(title)).GetAttribute("href");
-            return (resourceList[0].Text.Contains(title) 
-                && resourceList[0].Text.Contains(author) 
-                && resourceList[0].Text.Contains(description) 
+            return (resourceList[0].Text.Contains(title)
+                && resourceList[0].Text.Contains(author)
+                && resourceList[0].Text.Contains(description)
                 && resourceList[0].Text.Contains(website))
                 && link.Equals(resourceLink) ? true : false;
         }
