@@ -149,7 +149,7 @@ namespace LearnerRater.Tests.Steps
         [When(@"I click the review Delete button")]
         public void WhenIClickTheReviewDeleteButton()
         {
-            resourcePage.DeleteButton();
+            resourcePage.DeleteReviewButton();
         }
 
         [Then(@"The review by (.*) with (.*) should be deleted from the resource")]
@@ -173,19 +173,16 @@ namespace LearnerRater.Tests.Steps
         [When(@"I click the resource Delete button")]
         public void WhenIClickTheResourceDeleteButton()
         {
-            ScenarioContext.Current.Pending();
-        }
-
-        [Then(@"The resource should be deleted")]
-        public void ThenTheResourceShouldBeDeleted()
-        {
-            ScenarioContext.Current.Pending();
+            resourcePage.DeleteResourceButton();
         }
 
         [Then(@"The total count of resources for that subject should be reduced by 1")]
         public void ThenTheTotalCountOfResourcesForThatSubjectShouldBeReducedBy1()
         {
-            ScenarioContext.Current.Pending();
+            resourcePage
+                .GetResourceCountDifference("BeforeDelete")
+                .Should()
+                .Be(1);
         }
     }
 }

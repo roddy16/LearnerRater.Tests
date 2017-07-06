@@ -1,6 +1,5 @@
 ﻿using FluentAssertions;
 using LearnerRater.Tests.PageObjects;
-using System;
 using TechTalk.SpecFlow;
 
 namespace LearnerRater.Tests.Steps
@@ -31,6 +30,7 @@ namespace LearnerRater.Tests.Steps
         }
         
         [When(@"I click the Resource Submit button")]
+        [Given(@"I have clicked the Resource Submit button")]
         public void WhenIClickTheResourceSubmitButton()
         {
             resourcePage.AddResourceSubmitButton();

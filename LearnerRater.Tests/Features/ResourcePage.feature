@@ -47,7 +47,7 @@ Scenario Outline: Cancel Adding a Review
 Scenario Outline: Delete a Review
 	Given I have accessed the resources page
 		And I have opened the Add Review overlay
-		And I have entered <username>, <starRating> and <comments>
+		And I have entered a review with <username>, <starRating> and <comments>
 		And I have clicked the Submit button
 		And I have clicked Show Reviews
 		And I have clicked the manage button
@@ -58,8 +58,17 @@ Scenario Outline: Delete a Review
 		| username     | starRating | comments		   |
 		| TuffReviewer | Rating_1   | I didn't like it |
 
-Scenario: Delete a Resource
+Scenario Outline: Delete a Resource
 	Given I have accessed the resources page
+		And I have clicked the Add Resource Link button
+		And I have entered a resource with <subject>, <title>, <author>, <description>, <website>, <link>, <username>, <rating> and <comments>
+		And I have clicked the Resource Submit button
+		And I have clicked the manage button
 	When I click the resource Delete button
-	Then The resource should be deleted
+	Then The new resource <title> by <author> about <description> on <website> at <link> should not be added to the resource page
 		And The total count of resources for that subject should be reduced by 1
+	Examples: 
+	| subject	 | title		       | author       | description                 | website | link				  | username | rating   | comments       |
+	| JavaScript | JavaScript Not Java | J.S. Manwell | Learn javascript not Java   | JS Site | http://jssite.com/    | sRods    | Rating_1 | It was meh!!!! |
+
+		

@@ -34,6 +34,7 @@ namespace LearnerRater.Tests.PageObjects
         public IWebElement ResourceLink => webDriver.FindElement(By.Id("URL"));
         public IWebElement SubmitResourceButton => webDriver.FindElement(By.Id("btnSubmitCourse"));
         public IWebElement CancelResourceButton => webDriver.FindElement(By.Id("btnCancelCourse"));
+        public IWebElement DeleteResourceButton(int resourceCount) => webDriver.FindElement(By.Id("deleteResource_" + (resourceCount - 1)));
 
         public IList<IWebElement> UserReviews => webDriver.FindElements(By.CssSelector("div[id ^= 'reviewListContainer']"));
         public IList<IWebElement> ResourceList => webDriver.FindElements(By.CssSelector("#app > div > div > div > div:nth-child(3) > div.resource-list-container"));
@@ -121,7 +122,7 @@ namespace LearnerRater.Tests.PageObjects
             return this;
         }
 
-        public ResourcePage DeleteButton()
+        public ResourcePage DeleteReviewButton()
         {
             int reviewCount = GetNumberOfReviews();
             AddToScenarioContext("BeforeDelete", reviewCount);
@@ -191,7 +192,7 @@ namespace LearnerRater.Tests.PageObjects
         {
             var scenarioTitle = ScenarioContext.Current.ScenarioInfo.Title;
             
-            if (!scenarioTitle.Equals("Cancel a New Resource"))
+            if (scenarioTitle.Equals("Add a New Resource"))
             {
                 var resourceLink = webDriver.FindElement(By.LinkText(title)).GetAttribute("href");
 
@@ -232,6 +233,18 @@ namespace LearnerRater.Tests.PageObjects
         public bool IsAddResourceFormDisplayed()
         {
             return webDriver.FindElements(By.ClassName("form--add-resource")).Count > 0 ? true : false;
+        }
+
+        public ResourcePage DeleteResourceButton()
+        {
+
+            int resourceCount = GetNumberOfResources();
+            AddToScenarioContext("BeforeDelete", resourceCount);
+
+            wait.Until(ExpectedConditions.ElementIsVisible(By.Id("deleteResource_" + (resourceCount - 1))));
+            DeleteResourceButton(resourceCount).Click();
+            webDriver.SwitchTo().Alert().Accept();
+            return this;
         }
     }
 }

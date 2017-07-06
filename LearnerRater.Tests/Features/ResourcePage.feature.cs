@@ -209,7 +209,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 49
   testRunner.And("I have opened the Add Review overlay", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 50
-  testRunner.And(string.Format("I have entered {0}, {1} and {2}", username, starRating, comments), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And(string.Format("I have entered a review with {0}, {1} and {2}", username, starRating, comments), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 51
   testRunner.And("I have clicked the Submit button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 52
@@ -240,24 +240,50 @@ this.DeleteAReview("TuffReviewer", "Rating_1", "I didn\'t like it", ((string[])(
 #line hidden
         }
         
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Delete a Resource")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "ResourcePage")]
-        public virtual void DeleteAResource()
+        public virtual void DeleteAResource(string subject, string title, string author, string description, string website, string link, string username, string rating, string comments, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Delete a Resource", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Delete a Resource", exampleTags);
 #line 61
 this.ScenarioSetup(scenarioInfo);
 #line 62
  testRunner.Given("I have accessed the resources page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 63
- testRunner.When("I click the resource Delete button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+  testRunner.And("I have clicked the Add Resource Link button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 64
- testRunner.Then("The resource should be deleted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+  testRunner.And(string.Format("I have entered a resource with {0}, {1}, {2}, {3}, {4}, {5}, {6}, {7} and {8}", subject, title, author, description, website, link, username, rating, comments), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 65
+  testRunner.And("I have clicked the Resource Submit button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 66
+  testRunner.And("I have clicked the manage button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 67
+ testRunner.When("I click the resource Delete button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 68
+ testRunner.Then(string.Format("The new resource {0} by {1} about {2} on {3} at {4} should not be added to the re" +
+                        "source page", title, author, description, website, link), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 69
   testRunner.And("The total count of resources for that subject should be reduced by 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Delete a Resource: JavaScript")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "ResourcePage")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "JavaScript")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:subject", "JavaScript")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:title", "JavaScript Not Java")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:author", "J.S. Manwell")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:description", "Learn javascript not Java")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:website", "JS Site")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:link", "http://jssite.com/")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:username", "sRods")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:rating", "Rating_1")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:comments", "It was meh!!!!")]
+        public virtual void DeleteAResource_JavaScript()
+        {
+#line 61
+this.DeleteAResource("JavaScript", "JavaScript Not Java", "J.S. Manwell", "Learn javascript not Java", "JS Site", "http://jssite.com/", "sRods", "Rating_1", "It was meh!!!!", ((string[])(null)));
+#line hidden
         }
     }
 }
