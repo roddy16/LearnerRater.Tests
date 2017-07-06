@@ -17,6 +17,7 @@ Scenario Outline: Add a New Resource
 		And The new resource <title>, <author>, <description>, <website> and <link> should display
 		And The new resource should have <comments> by <username> listed
 		And The total count of resources for that subject should be incremented by 1
+		And The total count of resources for <subject> should be displayed on the resource subjects page
 	Examples: 
 	| subject | title            | author    | description             | website    | link					 | username | rating   | comments           |
 	| NCrunch | Crunching N Time | Dr. Suess | Learn all about NCrunch | LearnStuff | http://learnstuff.com/ | sRods    | Rating_5 | It was awesome!!!! |

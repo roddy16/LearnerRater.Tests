@@ -1,6 +1,9 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using System;
+using System.Collections.Generic;
 using System.Configuration;
+using TechTalk.SpecFlow;
 
 namespace LearnerRater.Tests.PageObjects
 {
@@ -27,6 +30,16 @@ namespace LearnerRater.Tests.PageObjects
             wait.Until(ExpectedConditions.ElementIsVisible(By.PartialLinkText(subject)));
             webDriver.FindElement(By.PartialLinkText(subject)).Click();
             return new ResourcePage(webDriver, wait);
+        }
+
+        public int GetResourceCountDifference(string subject, string key)
+        {
+            int beforeActionCount = (int)ScenarioContext.Current[key];
+
+            var subjectBadgeValue = webDriver.FindElement(By.PartialLinkText(subject)).FindElement(By.ClassName("badge"));
+            int resourceCount = Convert.ToInt32(subjectBadgeValue.Text);       
+
+            return beforeActionCount - resourceCount;
         }
     }
 }

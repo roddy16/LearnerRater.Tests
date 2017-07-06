@@ -107,6 +107,9 @@ this.ScenarioSetup(scenarioInfo);
   testRunner.And(string.Format("The new resource should have {0} by {1} listed", comments, username), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 19
   testRunner.And("The total count of resources for that subject should be incremented by 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 20
+  testRunner.And(string.Format("The total count of resources for {0} should be displayed on the resource subjects" +
+                        " page", subject), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -134,19 +137,19 @@ this.AddANewResource("NCrunch", "Crunching N Time", "Dr. Suess", "Learn all abou
         public virtual void CancelANewResource(string subject, string title, string author, string description, string website, string link, string username, string rating, string comments, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cancel a New Resource", exampleTags);
-#line 24
-this.ScenarioSetup(scenarioInfo);
 #line 25
- testRunner.Given("I have accessed the resources page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+this.ScenarioSetup(scenarioInfo);
 #line 26
-  testRunner.And("I have clicked the Add Resource Link button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("I have accessed the resources page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 27
-  testRunner.And(string.Format("I have entered a resource with {0}, {1}, {2}, {3}, {4}, {5}, {6}, {7} and {8}", subject, title, author, description, website, link, username, rating, comments), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I have clicked the Add Resource Link button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 28
- testRunner.When("I click the Resource Cancel button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+  testRunner.And(string.Format("I have entered a resource with {0}, {1}, {2}, {3}, {4}, {5}, {6}, {7} and {8}", subject, title, author, description, website, link, username, rating, comments), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 29
- testRunner.Then("The form should close", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("I click the Resource Cancel button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 30
+ testRunner.Then("The form should close", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 31
   testRunner.And(string.Format("The new resource {0} by {1} about {2} on {3} at {4} should not be added to the re" +
                         "source page", title, author, description, website, link), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
@@ -168,7 +171,7 @@ this.ScenarioSetup(scenarioInfo);
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:comments", "It was meh!!!!")]
         public virtual void CancelANewResource_JavaScript()
         {
-#line 24
+#line 25
 this.CancelANewResource("JavaScript", "JavaScript Not Java", "J.S. Manwell", "Learn javascript not Java", "JS Site", "http://jssite.com/", "sRods", "Rating_1", "It was meh!!!!", ((string[])(null)));
 #line hidden
         }

@@ -8,10 +8,12 @@ namespace LearnerRater.Tests.Steps
     public sealed class NewResourcePageSteps
     {
         private readonly ResourcePage resourcePage;
+        private readonly ResourceSubjectsPage resourceSubjectsPage;
 
-        public NewResourcePageSteps(ResourcePage resourcePage)
+        public NewResourcePageSteps(ResourcePage resourcePage, ResourceSubjectsPage resourceSubjectsPage)
         {
             this.resourcePage = resourcePage;
+            this.resourceSubjectsPage = resourceSubjectsPage;
         }
 
         [When(@"I click the Add Resource Link button")]
@@ -78,6 +80,18 @@ namespace LearnerRater.Tests.Steps
                 .Should()
                 .Be(-1);
         }
+
+        [Then(@"The total count of resources for (.*) should be displayed on the resource subjects page")]
+        public void ThenTheTotalCountOfResourcesFor_Subject_ShouldBeDisplayedOnTheResourceSubjectsPage(string subject)
+        {
+            resourceSubjectsPage.NavigateTo();
+
+            resourceSubjectsPage
+                .GetResourceCountDifference(subject, "BeforeAdd")
+                .Should()
+                .Be(-1);
+        }
+
 
         [Then(@"The form should close")]
         public void ThenTheFormShouldClose()
