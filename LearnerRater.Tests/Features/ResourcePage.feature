@@ -71,4 +71,12 @@ Scenario Outline: Delete a Resource
 	| subject	 | title		       | author       | description                 | website | link				  | username | rating   | comments       |
 	| JavaScript | JavaScript Not Java | J.S. Manwell | Learn javascript not Java   | JS Site | http://jssite.com/    | sRods    | Rating_1 | It was meh!!!! |
 
+#this scenario needs to have at least one resource in order to work - didn't add to steps to add one since 
+#eventually we will just have the db at the right state prior to running this test
+Scenario: Add a Review without Username or Star Rating
+	Given I have accessed the resources page
+		And I have opened the Add Review overlay
+	When I click the Submit button
+	Then I should get 2 required field error messages 
+		And The error text should read 'Required'
 		

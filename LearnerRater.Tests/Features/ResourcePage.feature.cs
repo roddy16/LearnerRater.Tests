@@ -285,6 +285,28 @@ this.ScenarioSetup(scenarioInfo);
 this.DeleteAResource("JavaScript", "JavaScript Not Java", "J.S. Manwell", "Learn javascript not Java", "JS Site", "http://jssite.com/", "sRods", "Rating_1", "It was meh!!!!", ((string[])(null)));
 #line hidden
         }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add a Review without Username or Star Rating")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "ResourcePage")]
+        public virtual void AddAReviewWithoutUsernameOrStarRating()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add a Review without Username or Star Rating", ((string[])(null)));
+#line 76
+this.ScenarioSetup(scenarioInfo);
+#line 77
+ testRunner.Given("I have accessed the resources page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 78
+  testRunner.And("I have opened the Add Review overlay", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 79
+ testRunner.When("I click the Submit button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 80
+ testRunner.Then("I should get 2 required field error messages", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 81
+  testRunner.And("The error text should read \'Required\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

@@ -184,5 +184,23 @@ namespace LearnerRater.Tests.Steps
                 .Should()
                 .Be(1);
         }
+
+        [Then(@"I should get (.*) required field error messages")]
+        public void ThenIShouldGet_ErrorMessageCount_RequiredFieldErrorMessages(int errorMessageCount)
+        {
+            resourcePage
+                .ErrorMessageCount()
+                .Should()
+                .Be(errorMessageCount);
+        }
+
+        [Then(@"The error text should read '(.*)'")]
+        public void ThenTheErrorTextShouldRead(string errorMessage)
+        {
+            resourcePage
+                .ErrorMessageText()
+                .Should()
+                .Be(errorMessage);
+        }
     }
 }

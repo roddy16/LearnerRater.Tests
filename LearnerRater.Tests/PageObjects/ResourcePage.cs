@@ -237,7 +237,6 @@ namespace LearnerRater.Tests.PageObjects
 
         public ResourcePage DeleteResourceButton()
         {
-
             int resourceCount = GetNumberOfResources();
             AddToScenarioContext("BeforeDelete", resourceCount);
 
@@ -245,6 +244,17 @@ namespace LearnerRater.Tests.PageObjects
             DeleteResourceButton(resourceCount).Click();
             webDriver.SwitchTo().Alert().Accept();
             return this;
+        }
+
+        public int ErrorMessageCount()
+        {
+            return webDriver.FindElements(By.ClassName("error")).Count;
+        }
+
+        public string ErrorMessageText()
+        {
+            var errorText = webDriver.FindElement(By.ClassName("error")).Text;
+            return errorText;
         }
     }
 }
