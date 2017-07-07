@@ -28,7 +28,7 @@ namespace LearnerRater.Tests.Steps
             resourceSubjectsPage.SelectSubject(subject);
         }
 
-        [Then(@"The resource page should be loaded for (.*) resources")]
+        [Then(@"the resource page should be loaded for (.*) resources")]
         public void ThenTheResourcePageShouldBeLoadedFor_Subject_Resources(string subject)
         {
             resourcePage

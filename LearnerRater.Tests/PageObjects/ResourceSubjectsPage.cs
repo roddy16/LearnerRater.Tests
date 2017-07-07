@@ -22,6 +22,7 @@ namespace LearnerRater.Tests.PageObjects
         public ResourceSubjectsPage NavigateTo()
         {
             webDriver.Navigate().GoToUrl(url);
+
             return this;
         }
 
@@ -29,6 +30,7 @@ namespace LearnerRater.Tests.PageObjects
         {
             wait.Until(ExpectedConditions.ElementIsVisible(By.PartialLinkText(subject)));
             webDriver.FindElement(By.PartialLinkText(subject)).Click();
+
             return new ResourcePage(webDriver, wait);
         }
 

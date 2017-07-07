@@ -78,7 +78,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 8
  testRunner.When(string.Format("I click the {0} link", subject), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 9
- testRunner.Then(string.Format("The resource page should be loaded for {0} resources", subject), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("the resource page should be loaded for {0} resources", subject), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

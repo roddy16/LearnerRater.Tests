@@ -14,10 +14,10 @@ namespace LearnerRater.Tests.Steps
             this.resourcePage = resourcePage;
         }
 
-        [Given(@"I have accessed the resources page")]
-        public void GivenIHaveAccessedTheResourcesPage()
+        [Given(@"I have selected '(.*)' as the category")]
+        public void GivenIHaveSelectedAsTheCategory(string category)
         {
-            resourcePage.NavigateTo();
+            resourcePage.NavigateTo(category);
         }
 
         [When(@"I click You Be The Judge button")]
@@ -54,7 +54,7 @@ namespace LearnerRater.Tests.Steps
             resourcePage.AddReviewCancelButton();
         }
 
-        [Then(@"All the reviews should be displayed")]
+        [Then(@"all the reviews should be displayed")]
         public void ThenAllTheReviewsShouldBeDisplayed()
         {
             resourcePage
@@ -63,7 +63,7 @@ namespace LearnerRater.Tests.Steps
                 .BeTrue();
         }
 
-        [Then(@"All the reviews should be hidden")]
+        [Then(@"all the reviews should be hidden")]
         public void ThenAllTheReviewsShouldBeHidden()
         {
             resourcePage
@@ -72,7 +72,7 @@ namespace LearnerRater.Tests.Steps
                 .BeFalse();
         }
 
-        [Then(@"The button should read Hide Reviews")]
+        [Then(@"the button should read Hide Reviews")]
         public void ThenTheButtonShouldReadHideReviews()
         {
             resourcePage
@@ -81,7 +81,7 @@ namespace LearnerRater.Tests.Steps
                 .StartWith("HIDE REVIEWS");
         }
 
-        [Then(@"The button should read Show Reviews")]
+        [Then(@"the button should read Show Reviews")]
         public void ThenTheButtonShouldReadShowReviews()
         {
             resourcePage
@@ -90,7 +90,7 @@ namespace LearnerRater.Tests.Steps
                 .StartWith("SHOW REVIEWS");
         }
 
-        [Then(@"The Add Review overlay should appear")]
+        [Then(@"the Add Review overlay should appear")]
         public void ThenTheAddReviewOverlayShouldAppear()
         {
             resourcePage
@@ -99,7 +99,7 @@ namespace LearnerRater.Tests.Steps
                 .BeTrue();
         }
 
-        [Then(@"The overlay should close")]
+        [Then(@"the overlay should close")]
         public void ThenTheOverlayShouldClose()
         {
             resourcePage
@@ -108,8 +108,8 @@ namespace LearnerRater.Tests.Steps
                 .BeFalse();
         }
 
-        [Then(@"The review by (.*) should be added to the resource with their (.*)")]
-        [Then(@"The new resource should have (.*) by (.*) listed")]
+        [Then(@"the review by (.*) should be added to the resource with their (.*)")]
+        [Then(@"the new resource should have (.*) by (.*) listed")]
         public void ThenTheReviewBy_UserName_ShouldBeAddedToTheResourceWithTheir_Comments(string userName, string comments)
         {
             resourcePage.ToggleReviews();
@@ -120,7 +120,7 @@ namespace LearnerRater.Tests.Steps
                 .BeTrue();
         }
 
-        [Then(@"The total count of reviews for that resource should be incremented by 1")]
+        [Then(@"the total count of reviews for that resource should be incremented by 1")]
         public void ThenTheTotalCountOfReviewsForThatResourceShouldBeIncrementedBy1()
         {
             resourcePage
@@ -129,7 +129,7 @@ namespace LearnerRater.Tests.Steps
                 .Be(-1);
         }
 
-        [Then(@"The review by (.*) should not be added to the resource with their (.*)")]
+        [Then(@"the review by (.*) should not be added to the resource with their (.*)")]
         public void ThenTheReviewBy_UserName_ShouldNotBeAddedToTheResourceWithTheir_Comments(string userName, string comments)
         {
             resourcePage.ToggleReviews();
@@ -152,7 +152,7 @@ namespace LearnerRater.Tests.Steps
             resourcePage.DeleteReviewButton();
         }
 
-        [Then(@"The review by (.*) with (.*) should be deleted from the resource")]
+        [Then(@"the review by (.*) with (.*) should be deleted from the resource")]
         public void ThenTheReviewBy_UserName_ShouldBeDeletedFromTheResource(string userName, string comments)
         {
             resourcePage
@@ -161,7 +161,7 @@ namespace LearnerRater.Tests.Steps
                 .BeFalse();
         }
 
-        [Then(@"The total count of reviews for that resource should be reduced by 1")]
+        [Then(@"the total count of reviews for that resource should be reduced by 1")]
         public void ThenTheTotalCountOfReviewsForThatResourceShouldBeReducedBy1()
         {
             resourcePage
@@ -176,7 +176,7 @@ namespace LearnerRater.Tests.Steps
             resourcePage.DeleteResourceButton();
         }
 
-        [Then(@"The total count of resources for that subject should be reduced by 1")]
+        [Then(@"the total count of resources for that subject should be reduced by 1")]
         public void ThenTheTotalCountOfResourcesForThatSubjectShouldBeReducedBy1()
         {
             resourcePage
@@ -194,7 +194,7 @@ namespace LearnerRater.Tests.Steps
                 .Be(errorMessageCount);
         }
 
-        [Then(@"The error text should read '(.*)'")]
+        [Then(@"the error text should read '(.*)'")]
         public void ThenTheErrorTextShouldRead(string errorMessage)
         {
             resourcePage

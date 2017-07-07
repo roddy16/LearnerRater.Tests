@@ -44,7 +44,7 @@ namespace LearnerRater.Tests.Steps
             resourcePage.AddResourceCancelButton();
         }
         
-        [Then(@"The add new resource link form should be displayed")]
+        [Then(@"the add new resource link form should be displayed")]
         public void ThenTheAddNewResourceLinkFormShouldBeDisplayed()
         {
             resourcePage
@@ -62,7 +62,7 @@ namespace LearnerRater.Tests.Steps
                 .BeTrue();
         }
         
-        [Then(@"The new resource (.*), (.*), (.*), (.*) and (.*) should display")]
+        [Then(@"the new resource (.*), (.*), (.*), (.*) and (.*) should display")]
         public void ThenTheNewResource_Title_Author_Description_Website_And_Link_ShouldDisplay(
             string title, string author, string description, string website, string link)
         {
@@ -72,7 +72,7 @@ namespace LearnerRater.Tests.Steps
                 .BeTrue();
         }
 
-        [Then(@"The total count of resources for that subject should be incremented by 1")]
+        [Then(@"the total count of resources for that subject should be incremented by 1")]
         public void ThenTheTotalCountOfResourcesForThatSubjectShouldBeIncrementedBy1()
         {
             resourcePage
@@ -81,7 +81,7 @@ namespace LearnerRater.Tests.Steps
                 .Be(-1);
         }
 
-        [Then(@"The total count of resources for (.*) should be displayed on the resource subjects page")]
+        [Then(@"the total count of resources for (.*) should be displayed on the resource subjects page")]
         public void ThenTheTotalCountOfResourcesFor_Subject_ShouldBeDisplayedOnTheResourceSubjectsPage(string subject)
         {
             resourceSubjectsPage.NavigateTo();
@@ -93,7 +93,7 @@ namespace LearnerRater.Tests.Steps
         }
 
 
-        [Then(@"The form should close")]
+        [Then(@"the form should close")]
         public void ThenTheFormShouldClose()
         {         
             resourcePage
@@ -102,7 +102,7 @@ namespace LearnerRater.Tests.Steps
                 .BeFalse();
         }
 
-        [Then(@"The new resource (.*) by (.*) about (.*) on (.*) at (.*) should not be added to the resource page")]
+        [Then(@"the new resource (.*) by (.*) about (.*) on (.*) at (.*) should not be added to the resource page")]
         public void ThenTheNewResource_Title_By_Author_About_Description_On_Website_At_Link_ShouldNotBeAddedToTheResourcePage(
             string title, string author, string description, string website, string link)
         {

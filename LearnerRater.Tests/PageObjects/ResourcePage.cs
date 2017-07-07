@@ -14,7 +14,7 @@ namespace LearnerRater.Tests.PageObjects
         private readonly IWebDriver webDriver;
         private readonly WebDriverWait wait;
         private static string baseUrl = ConfigurationManager.AppSettings["BaseUrl"];
-        private static string url = $"{baseUrl}/resources/NCrunch";
+        private static string url = $"{baseUrl}/resources";
 
         public IWebElement ToggleReviewsButton => webDriver.FindElement(By.Id("btnToggleReviewVisibility"));
         public IWebElement AddReviewButton => webDriver.FindElement(By.Id("btnAddReview"));
@@ -45,9 +45,10 @@ namespace LearnerRater.Tests.PageObjects
             this.wait = wait;
         }
 
-        public ResourcePage NavigateTo()
+        public ResourcePage NavigateTo(string catgegory)
         {
-            webDriver.Navigate().GoToUrl(url);
+            webDriver.Navigate().GoToUrl($"{url}/{catgegory}");
+
             return this;
         }
 
@@ -60,6 +61,7 @@ namespace LearnerRater.Tests.PageObjects
         {
             wait.Until(ExpectedConditions.ElementIsVisible(By.Id("btnToggleReviewVisibility")));
             ToggleReviewsButton.Click();
+
             return this;
         }
 
@@ -67,6 +69,7 @@ namespace LearnerRater.Tests.PageObjects
         {
             //TODO find a more graceful way to handle this scenario. Without the thread.sleep call, the 'hidereviews' test fails because the browswer refreshes slower than the driver navigates
             Thread.Sleep(1000);
+
             return !UserReviews.ElementAt(0).GetAttribute("style").Equals("display: none;");
         }
 
@@ -79,6 +82,7 @@ namespace LearnerRater.Tests.PageObjects
         {
             wait.Until(ExpectedConditions.ElementIsVisible(By.Id("btnAddReview")));
             AddReviewButton.Click();
+
             return this;
         }
 
@@ -93,12 +97,14 @@ namespace LearnerRater.Tests.PageObjects
             AddToScenarioContext("BeforeAdd", reviewCount);
 
             SubmitReviewButton.Click();
+
             return this;
         }
 
         public ResourcePage AddReviewCancelButton()
         {
             CancelReviewButton.Click();
+
             return this;
         }
 
@@ -107,6 +113,7 @@ namespace LearnerRater.Tests.PageObjects
             UsernameInput.SendKeys(userName);
             StarRating(stars).Click();
             UserComment.SendKeys(comments);
+
             return this;
         }
 
@@ -119,6 +126,7 @@ namespace LearnerRater.Tests.PageObjects
         public ResourcePage ToggleManageButton()
         {
             ManageButton.Click();
+
             return this;
         }
 
@@ -129,6 +137,7 @@ namespace LearnerRater.Tests.PageObjects
 
             wait.Until(ExpectedConditions.ElementIsVisible(By.Id("btnDeleteReview_" + (reviewCount - 1))));
             DeleteReviewButton(reviewCount).Click();
+
             return this;
         }
 
@@ -158,6 +167,7 @@ namespace LearnerRater.Tests.PageObjects
             AddToScenarioContext("BeforeAdd", resourceCount);
 
             AddNewResourceLinkButton.Click();
+
             return this;
         }
 
@@ -179,12 +189,14 @@ namespace LearnerRater.Tests.PageObjects
             UsernameInput.SendKeys(userName);
             StarRating(rating).Click();
             UserComment.SendKeys(comments);
+
             return this;
         }
 
         public ResourcePage AddResourceSubmitButton()
         {
             SubmitResourceButton.Click();
+
             return this;
         }
 
@@ -227,6 +239,7 @@ namespace LearnerRater.Tests.PageObjects
         public ResourcePage AddResourceCancelButton()
         {
             CancelResourceButton.Click();
+
             return this;
         }
 
@@ -243,6 +256,7 @@ namespace LearnerRater.Tests.PageObjects
             wait.Until(ExpectedConditions.ElementIsVisible(By.Id("deleteResource_" + (resourceCount - 1))));
             DeleteResourceButton(resourceCount).Click();
             webDriver.SwitchTo().Alert().Accept();
+
             return this;
         }
 
@@ -254,6 +268,7 @@ namespace LearnerRater.Tests.PageObjects
         public string ErrorMessageText()
         {
             var errorText = webDriver.FindElement(By.ClassName("error")).Text;
+
             return errorText;
         }
     }

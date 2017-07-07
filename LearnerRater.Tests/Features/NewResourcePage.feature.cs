@@ -77,11 +77,11 @@ namespace LearnerRater.Tests.Features
 #line 6
 this.ScenarioSetup(scenarioInfo);
 #line 7
- testRunner.Given("I have accessed the resources page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I have selected \'NCrunch\' as the category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
  testRunner.When("I click the Add Resource Link button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 9
- testRunner.Then("The add new resource link form should be displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the add new resource link form should be displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -92,7 +92,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 11
 this.ScenarioSetup(scenarioInfo);
 #line 12
- testRunner.Given("I have accessed the resources page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given(string.Format("I have selected \'{0}\' as the category", subject), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 13
   testRunner.And("I have clicked the Add Resource Link button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 14
@@ -102,13 +102,13 @@ this.ScenarioSetup(scenarioInfo);
 #line 16
  testRunner.Then(string.Format("I should be redirected to the {0} resource page", subject), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 17
-  testRunner.And(string.Format("The new resource {0}, {1}, {2}, {3} and {4} should display", title, author, description, website, link), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And(string.Format("the new resource {0}, {1}, {2}, {3} and {4} should display", title, author, description, website, link), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 18
-  testRunner.And(string.Format("The new resource should have {0} by {1} listed", comments, username), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And(string.Format("the new resource should have {0} by {1} listed", comments, username), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 19
-  testRunner.And("The total count of resources for that subject should be incremented by 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("the total count of resources for that subject should be incremented by 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 20
-  testRunner.And(string.Format("The total count of resources for {0} should be displayed on the resource subjects" +
+  testRunner.And(string.Format("the total count of resources for {0} should be displayed on the resource subjects" +
                         " page", subject), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -140,7 +140,7 @@ this.AddANewResource("NCrunch", "Crunching N Time", "Dr. Suess", "Learn all abou
 #line 25
 this.ScenarioSetup(scenarioInfo);
 #line 26
- testRunner.Given("I have accessed the resources page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given(string.Format("I have selected \'{0}\' as the category", subject), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 27
   testRunner.And("I have clicked the Add Resource Link button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 28
@@ -148,9 +148,9 @@ this.ScenarioSetup(scenarioInfo);
 #line 29
  testRunner.When("I click the Resource Cancel button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 30
- testRunner.Then("The form should close", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the form should close", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 31
-  testRunner.And(string.Format("The new resource {0} by {1} about {2} on {3} at {4} should not be added to the re" +
+  testRunner.And(string.Format("the new resource {0} by {1} about {2} on {3} at {4} should not be added to the re" +
                         "source page", title, author, description, website, link), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();

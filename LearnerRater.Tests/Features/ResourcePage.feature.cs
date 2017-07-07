@@ -76,13 +76,13 @@ namespace LearnerRater.Tests.Features
 #line 6
 this.ScenarioSetup(scenarioInfo);
 #line 7
- testRunner.Given("I have accessed the resources page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I have selected \'Git\' as the category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
  testRunner.When("I click Show Reviews", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 9
- testRunner.Then("All the reviews should be displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("all the reviews should be displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 10
-  testRunner.And("The button should read Hide Reviews", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("the button should read Hide Reviews", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -96,15 +96,15 @@ this.ScenarioSetup(scenarioInfo);
 #line 12
 this.ScenarioSetup(scenarioInfo);
 #line 13
- testRunner.Given("I have accessed the resources page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I have selected \'Git\' as the category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 14
   testRunner.And("I have clicked Show Reviews", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 15
  testRunner.When("I click Hide Reviews", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 16
- testRunner.Then("All the reviews should be hidden", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("all the reviews should be hidden", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 17
-  testRunner.And("The button should read Show Reviews", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("the button should read Show Reviews", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -118,11 +118,11 @@ this.ScenarioSetup(scenarioInfo);
 #line 19
 this.ScenarioSetup(scenarioInfo);
 #line 20
- testRunner.Given("I have accessed the resources page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I have selected \'Git\' as the category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 21
  testRunner.When("I click You Be The Judge button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 22
- testRunner.Then("The Add Review overlay should appear", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the Add Review overlay should appear", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -133,7 +133,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 24
 this.ScenarioSetup(scenarioInfo);
 #line 25
- testRunner.Given("I have accessed the resources page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I have selected \'Git\' as the category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 26
   testRunner.And("I have opened the Add Review overlay", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 27
@@ -141,11 +141,11 @@ this.ScenarioSetup(scenarioInfo);
 #line 28
  testRunner.When("I click the Submit button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 29
- testRunner.Then("The overlay should close", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the overlay should close", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 30
-  testRunner.And(string.Format("The review by {0} should be added to the resource with their {1}", username, comments), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And(string.Format("the review by {0} should be added to the resource with their {1}", username, comments), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 31
-  testRunner.And("The total count of reviews for that resource should be incremented by 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("the total count of reviews for that resource should be incremented by 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -170,7 +170,7 @@ this.AddAReview("Mr. Bigglesworth", "Rating_2", "It was just ok", ((string[])(nu
 #line 36
 this.ScenarioSetup(scenarioInfo);
 #line 37
- testRunner.Given("I have accessed the resources page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I have selected \'Git\' as the category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 38
   testRunner.And("I have opened the Add Review overlay", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 39
@@ -178,9 +178,9 @@ this.ScenarioSetup(scenarioInfo);
 #line 40
  testRunner.When("I click the Cancel button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 41
- testRunner.Then("The overlay should close", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the overlay should close", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 42
-  testRunner.And(string.Format("The review by {0} should not be added to the resource with their {1}", username, comments), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And(string.Format("the review by {0} should not be added to the resource with their {1}", username, comments), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -205,7 +205,7 @@ this.CancelAddingAReview("TuffReviewer", "Rating_1", "I didn\'t like it", ((stri
 #line 47
 this.ScenarioSetup(scenarioInfo);
 #line 48
- testRunner.Given("I have accessed the resources page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I have selected \'Git\' as the category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 49
   testRunner.And("I have opened the Add Review overlay", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 50
@@ -219,9 +219,9 @@ this.ScenarioSetup(scenarioInfo);
 #line 54
  testRunner.When("I click the review Delete button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 55
- testRunner.Then(string.Format("The review by {0} with {1} should be deleted from the resource", username, comments), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("the review by {0} with {1} should be deleted from the resource", username, comments), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 56
-  testRunner.And("The total count of reviews for that resource should be reduced by 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("the total count of reviews for that resource should be reduced by 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -246,7 +246,7 @@ this.DeleteAReview("TuffReviewer", "Rating_1", "I didn\'t like it", ((string[])(
 #line 61
 this.ScenarioSetup(scenarioInfo);
 #line 62
- testRunner.Given("I have accessed the resources page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given(string.Format("I have selected \'{0}\' as the category", subject), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 63
   testRunner.And("I have clicked the Add Resource Link button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 64
@@ -258,10 +258,10 @@ this.ScenarioSetup(scenarioInfo);
 #line 67
  testRunner.When("I click the resource Delete button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 68
- testRunner.Then(string.Format("The new resource {0} by {1} about {2} on {3} at {4} should not be added to the re" +
+ testRunner.Then(string.Format("the new resource {0} by {1} about {2} on {3} at {4} should not be added to the re" +
                         "source page", title, author, description, website, link), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 69
-  testRunner.And("The total count of resources for that subject should be reduced by 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("the total count of resources for that subject should be reduced by 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -292,18 +292,18 @@ this.DeleteAResource("JavaScript", "JavaScript Not Java", "J.S. Manwell", "Learn
         public virtual void AddAReviewWithoutUsernameOrStarRating()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add a Review without Username or Star Rating", ((string[])(null)));
-#line 76
+#line 74
 this.ScenarioSetup(scenarioInfo);
-#line 77
- testRunner.Given("I have accessed the resources page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 78
+#line 75
+ testRunner.Given("I have selected \'Git\' as the category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 76
   testRunner.And("I have opened the Add Review overlay", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 79
+#line 77
  testRunner.When("I click the Submit button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 80
+#line 78
  testRunner.Then("I should get 2 required field error messages", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 81
-  testRunner.And("The error text should read \'Required\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 79
+  testRunner.And("the error text should read \'Required\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

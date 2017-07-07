@@ -4,6 +4,9 @@ using OpenQA.Selenium.Chrome;
 using BoDi;
 using OpenQA.Selenium.Support.UI;
 using System;
+using System.Configuration;
+using System.Collections.Generic;
+using LearnerRater.Tests.Utils;
 
 namespace LearnerRater.Tests.Steps
 {
@@ -36,6 +39,20 @@ namespace LearnerRater.Tests.Steps
         public void TearDownScenario()
         {
             webDriver.Dispose();
-        }        
+        }
+
+        [BeforeScenario]
+        [AfterScenario]
+        public void ResetDatabase()
+        {
+            var connectionString = ConfigurationManager.ConnectionStrings["ClientDatabase"].ConnectionString;
+            var keysToReplace = new Dictionary<string, string>()
+            {
+                { "{DatabaseName}", ConfigurationManager.AppSettings["DatabaseName"] },
+                { "{SnapShotName}", ConfigurationManager.AppSettings["SnapShotName"] }
+            };
+
+            DatabaseCommands.RunScriptFromFile(connectionString, @"Scripts\RestoreDatabaseFromSnapShot.sql", keysToReplace);
+        }
     }
 }
