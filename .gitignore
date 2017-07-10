@@ -6,5 +6,3 @@ obj/
 packages/
 *.dbmdl
 _NCrunch_LearnerRater.Tests/
-*.ncrunchsolution
-*.ncrunchproject
