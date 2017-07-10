@@ -81,6 +81,16 @@ namespace LearnerRater.Tests.Steps
                 .Be(-1);
         }
 
+        [Then(@"the total count of resources for that subject should be '(.*)'")]
+        public void ThenTheTotalCountOfResourcesForThatSubjectShouldBe(int numberOfResources)
+        {
+            resourcePage
+                .NumberOfResources.Text
+                .Should()
+                .Be($"{numberOfResources}");
+        }
+
+
         [Then(@"the total count of resources for (.*) should be displayed on the resource subjects page")]
         public void ThenTheTotalCountOfResourcesFor_Subject_ShouldBeDisplayedOnTheResourceSubjectsPage(string subject)
         {
@@ -92,6 +102,18 @@ namespace LearnerRater.Tests.Steps
                 .Be(-1);
         }
 
+        [Then(@"the total count of resources for '(.*)' should be displayed on the resource subjects page as '(.*)'")]
+        public void ThenTheTotalCountOfResourcesForShouldBeDisplayedOnTheResourceSubjectsPageAs(string category, int numberOfResources)
+        {
+            resourceSubjectsPage
+                .BackToSubjectsPageButton
+                .Click();
+
+            resourceSubjectsPage
+                .NumberOfResources(category).Text
+                .Should()
+                .Be($"{numberOfResources}");
+        }
 
         [Then(@"the form should close")]
         public void ThenTheFormShouldClose()

@@ -16,8 +16,8 @@ Scenario Outline: Add a New Resource
 	Then I should be redirected to the <subject> resource page
 		And the new resource <title>, <author>, <description>, <website> and <link> should display
 		And the new resource should have <comments> by <username> listed
-		And the total count of resources for that subject should be incremented by 1
-		And the total count of resources for <subject> should be displayed on the resource subjects page
+		And the total count of resources for that subject should be '1'
+		And the total count of resources for '<subject>' should be displayed on the resource subjects page as '1'
 	Examples: 
 	| subject | title            | author    | description             | website    | link                   | username | rating   | comments           |
 	| NCrunch | Crunching N Time | Dr. Suess | Learn all about NCrunch | LearnStuff | http://learnstuff.com/ | sRods    | Rating_5 | It was awesome!!!! |

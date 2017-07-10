@@ -35,6 +35,7 @@ namespace LearnerRater.Tests.PageObjects
         public IWebElement SubmitResourceButton => webDriver.FindElement(By.Id("btnSubmitCourse"));
         public IWebElement CancelResourceButton => webDriver.FindElement(By.Id("btnCancelCourse"));
         public IWebElement DeleteResourceButton(int resourceCount) => webDriver.FindElement(By.Id("deleteResource_" + (resourceCount - 1)));
+        public IWebElement NumberOfResources => webDriver.FindElement(By.Id("numberOfResourcesBadge"));
 
         public IList<IWebElement> UserReviews => webDriver.FindElements(By.CssSelector("div[id ^= 'reviewListContainer']"));
         public IList<IWebElement> ResourceList => webDriver.FindElements(By.CssSelector("#app > div > div > div > div:nth-child(3) > div.resource-list-container"));
@@ -203,7 +204,7 @@ namespace LearnerRater.Tests.PageObjects
         public bool IsResourceListed(string title, string author, string description, string website, string link)
         {
             var scenarioTitle = ScenarioContext.Current.ScenarioInfo.Title;
-            
+
             if (scenarioTitle.Equals("Add a New Resource"))
             {
                 var resourceLink = webDriver.FindElement(By.LinkText(title)).GetAttribute("href");

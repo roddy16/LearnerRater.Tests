@@ -1,7 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
 using TechTalk.SpecFlow;
 
@@ -18,6 +17,9 @@ namespace LearnerRater.Tests.PageObjects
             this.webDriver = webDriver;
             this.wait = wait;
         }
+
+        public IWebElement BackToSubjectsPageButton => webDriver.FindElement(By.Id("backToSubjectsPageButton"));
+        public IWebElement NumberOfResources(string category) => webDriver.FindElement(By.Id($"numberOfResourcesBadge-{category}"));
 
         public ResourceSubjectsPage NavigateTo()
         {

@@ -106,10 +106,10 @@ this.ScenarioSetup(scenarioInfo);
 #line 18
   testRunner.And(string.Format("the new resource should have {0} by {1} listed", comments, username), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 19
-  testRunner.And("the total count of resources for that subject should be incremented by 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("the total count of resources for that subject should be \'1\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 20
-  testRunner.And(string.Format("the total count of resources for {0} should be displayed on the resource subjects" +
-                        " page", subject), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And(string.Format("the total count of resources for \'{0}\' should be displayed on the resource subjec" +
+                        "ts page as \'1\'", subject), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
