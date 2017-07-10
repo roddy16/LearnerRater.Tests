@@ -46,9 +46,9 @@ namespace LearnerRater.Tests.PageObjects
             this.wait = wait;
         }
 
-        public ResourcePage NavigateTo(string catgegory)
+        public ResourcePage NavigateTo(string category)
         {
-            webDriver.Navigate().GoToUrl($"{url}/{catgegory}");
+            webDriver.Navigate().GoToUrl($"{url}/{category}");
 
             return this;
         }
@@ -268,9 +268,7 @@ namespace LearnerRater.Tests.PageObjects
 
         public string ErrorMessageText()
         {
-            var errorText = webDriver.FindElement(By.ClassName("error")).Text;
-
-            return errorText;
+            return webDriver.FindElement(By.ClassName("error")).Text;
         }
     }
 }

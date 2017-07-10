@@ -75,6 +75,17 @@ Scenario: Add a Review without Username or Star Rating
 	Given I have selected 'Git' as the category
 		And I have opened the Add Review overlay
 	When I click the Submit button
-	Then I should get 2 required field error messages 
-		And the error text should read 'Required'
+	Then I should get '2' error messages
+		And The error text should read 'Required'
+
+Scenario Outline: Add a Review with a long Username
+	Given I have selected 'Git' as the category
+		And I have opened the Add Review overlay
+		And I have entered a review with <username>, <starRating> and <comments>
+	When I click the Submit button
+	Then I should get '1' error message
+		And The error text should read 'Exceeded max field size'
+	Examples: 
+	| username											  | starRating | comments		   |
+	| ThisIsAVeryLongUserNameThatShouldNotPassValidation! | Rating_1   | I didn't like it |
 		

@@ -185,7 +185,8 @@ namespace LearnerRater.Tests.Steps
                 .Be(1);
         }
 
-        [Then(@"I should get (.*) required field error messages")]
+        [Then(@"I should get '(.*)' error messages")]
+        [Then(@"I should get '(.*)' error message")]
         public void ThenIShouldGet_ErrorMessageCount_RequiredFieldErrorMessages(int errorMessageCount)
         {
             resourcePage
@@ -194,8 +195,8 @@ namespace LearnerRater.Tests.Steps
                 .Be(errorMessageCount);
         }
 
-        [Then(@"the error text should read '(.*)'")]
-        public void ThenTheErrorTextShouldRead(string errorMessage)
+        [Then(@"The error text should read '(.*)'")]
+        public void ThenTheErrorTextShouldRead_ErrorMessage(string errorMessage)
         {
             resourcePage
                 .ErrorMessageText()
