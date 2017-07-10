@@ -303,7 +303,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 78
  testRunner.Then("I should get \'2\' error messages", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 79
-  testRunner.And("The error text should read \'Required\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("the error text should read \'Required\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -324,7 +324,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 86
  testRunner.Then("I should get \'1\' error message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 87
-  testRunner.And("The error text should read \'Exceeded max field size\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("the error text should read \'Exceeded max field size\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

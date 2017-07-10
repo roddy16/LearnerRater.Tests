@@ -195,7 +195,7 @@ namespace LearnerRater.Tests.Steps
                 .Be(errorMessageCount);
         }
 
-        [Then(@"The error text should read '(.*)'")]
+        [Then(@"the error text should read '(.*)'")]
         public void ThenTheErrorTextShouldRead_ErrorMessage(string errorMessage)
         {
             resourcePage
