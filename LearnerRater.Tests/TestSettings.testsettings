@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestSettings name="TestSettings" id="6c7aecb9-76f8-4308-8761-077b4f2bbcfb" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Description>These are default test settings for a local test run.</Description>
+  <Deployment>
+	<DeploymentItem filename="LearnerRater.Tests\chromedriver.exe" />
+	<DeploymentItem filename="LearnerRater.Tests\Scripts\" 
+		outputDirectory=".\Scripts\" />/>
+  </Deployment>
+</TestSettings>
