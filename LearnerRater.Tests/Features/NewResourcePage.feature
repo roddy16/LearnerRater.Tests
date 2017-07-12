@@ -45,8 +45,8 @@ Scenario: Add a Resource without Title, Author, Description, Website, Link, User
 Scenario: Add a Resource with a long Title, Author, Website, Link and Username
 	Given I have selected 'SpecFlow' as the category
 		And I have clicked the Add Resource Link button
-		And I have entered more than the maximum allowed characters for the following fields
-			| fieldName | maxCharacters |
+		And I have entered more than the maximum allowed characters for the following resource fields
+			| FieldName | MaxCharacters |
 			| title     | 100           |
 			| author    | 50            |
 			| website   | 50            |

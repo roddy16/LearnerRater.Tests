@@ -47,7 +47,7 @@ namespace LearnerRater.Tests.Steps
             resourcePage.AddResourceSubmitButton();
         }
 
-        [Given(@"I have entered more than the maximum allowed characters for the following fields")]
+        [Given(@"I have entered more than the maximum allowed characters for the following resource fields")]
         public void GivenIHaveEnteredMoreThanTheMaximumAllowedCharactersForTheFollowingFields(Table table)
         {
             var resourceMaxLength = table.CreateInstance<ResourceMaxLength>();
@@ -142,6 +142,7 @@ namespace LearnerRater.Tests.Steps
                 .Should()
                 .BeFalse();
         }
+
         [Then(@"the new resource should not be added to the resource page")]
         public void ThenTheNewResourceShouldNotBeAddedToTheResourcePage()
         {
@@ -150,11 +151,5 @@ namespace LearnerRater.Tests.Steps
                 .Should()
                 .BeFalse();
         }
-
-        //[Given(@"I have entered more than the maximum allowed characters for the following fields")]
-        //public void GivenIHaveEnteredMoreThanTheMaximumAllowedCharactersForTheFollowingFields(Table table)
-        //{
-        //    resourcePage.AddResourceFields("Git", StringExtensions.CreateLargeString($"{table.Rows[0][1]}"),"", "", "", "", "", "", "");
-        //} 
     }
 }

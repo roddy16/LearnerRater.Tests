@@ -242,8 +242,8 @@ this.ScenarioSetup(scenarioInfo);
   testRunner.And("I have clicked the Add Resource Link button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
-                        "fieldName",
-                        "maxCharacters"});
+                        "FieldName",
+                        "MaxCharacters"});
             table3.AddRow(new string[] {
                         "title",
                         "100"});
@@ -260,7 +260,8 @@ this.ScenarioSetup(scenarioInfo);
                         "username",
                         "50"});
 #line 48
-  testRunner.And("I have entered more than the maximum allowed characters for the following fields", ((string)(null)), table3, "And ");
+  testRunner.And("I have entered more than the maximum allowed characters for the following resourc" +
+                    "e fields", ((string)(null)), table3, "And ");
 #line 55
  testRunner.When("I click the Resource Submit button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 56

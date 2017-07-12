@@ -4,6 +4,7 @@ using TechTalk.SpecFlow;
 using LearnerRater.Tests.Contexts;
 using LearnerRater.Tests.Models;
 using TechTalk.SpecFlow.Assist;
+using LearnerRater.Tests.Utils;
 
 namespace LearnerRater.Tests.Steps
 {
@@ -158,11 +159,21 @@ namespace LearnerRater.Tests.Steps
                 .BeFalse();
         }
 
-
         [Given(@"I have clicked the manage button")]
         public void GivenIHaveClickedTheManageButton()
         {
             resourcePage.ToggleManageButton();
+        }
+
+        [Given(@"I have entered more than the maximum allowed characters for the following review field")]
+        public void GivenIHaveEnteredMoreThanTheMaximumAllowedCharactersForTheFollowingReviewField(Table table)
+        {
+            var reviewMaxLength = table.CreateInstance<ReviewMaxLength>();
+
+            var model = new Review() { Rating = 1 };
+            var review = ModelHelpers.CreateModelWithPropertiesExceedingMaxLength(model, reviewMaxLength);
+
+            resourcePage.AddReviewFields(review);
         }
 
         [When(@"I click the review Delete button")]

@@ -112,11 +112,11 @@ namespace LearnerRater.Tests.PageObjects
             return this;
         }
 
-        public ResourcePage AddReviewFields(Resource resource)
+        public ResourcePage AddReviewFields(Review review)
         {
-            UsernameInput.SendKeys(resource.Username);
-            StarRating(resource.Rating).Click();
-            UserComment.SendKeys(resource.Comment);
+            UsernameInput.SendKeys(review.Username);
+            StarRating(review.Rating).Click();
+            UserComment.SendKeys(review.Comment);
 
             return this;
         }
@@ -192,8 +192,6 @@ namespace LearnerRater.Tests.PageObjects
 
             return this;
         }
-
-        //public ResourcePage AddResourceFieldsWithMaxFieldValidation(string title, string author, string website, string)
 
         public ResourcePage AddResourceSubmitButton()
         {

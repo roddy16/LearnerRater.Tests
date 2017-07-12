@@ -77,9 +77,9 @@ Scenario: Add a Review without Username or Star Rating
 Scenario: Add a Review with a long Username
 	Given I have selected 'Git' as the category
 		And I have opened the Add Review overlay
-		And I have entered the following review
-		| Username                                            | Rating | Comment          |
-		| ThisIsAVeryLongUserNameThatShouldNotPassValidation! | 1      | I didn't like it |
+		And I have entered more than the maximum allowed characters for the following review field
+		| FieldName | MaxCharacters |
+		| username  | 50            |
 	When I click the Submit button
 	Then I should get '1' error message
 		And the error text should read 'Exceeded max field size'

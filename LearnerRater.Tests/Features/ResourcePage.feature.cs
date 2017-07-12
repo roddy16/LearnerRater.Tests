@@ -319,15 +319,14 @@ this.ScenarioSetup(scenarioInfo);
   testRunner.And("I have opened the Add Review overlay", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Username",
-                        "Rating",
-                        "Comment"});
+                        "FieldName",
+                        "MaxCharacters"});
             table5.AddRow(new string[] {
-                        "ThisIsAVeryLongUserNameThatShouldNotPassValidation!",
-                        "1",
-                        "I didn\'t like it"});
+                        "username",
+                        "50"});
 #line 80
-  testRunner.And("I have entered the following review", ((string)(null)), table5, "And ");
+  testRunner.And("I have entered more than the maximum allowed characters for the following review " +
+                    "field", ((string)(null)), table5, "And ");
 #line 83
  testRunner.When("I click the Submit button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 84
