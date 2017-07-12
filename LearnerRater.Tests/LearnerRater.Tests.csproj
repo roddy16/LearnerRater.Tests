@@ -115,7 +115,11 @@
     <Compile Include="Steps\ResourceSubjectsPageSteps.cs" />
     <Compile Include="Steps\_BaseSteps.cs" />
     <Compile Include="Utils\DatabaseCommands.cs" />
+<<<<<<< Updated upstream
     <Compile Include="Enums\Order.cs" />
+=======
+    <Compile Include="Utils\StringExtensions.cs" />
+>>>>>>> Stashed changes
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Brysen.config">

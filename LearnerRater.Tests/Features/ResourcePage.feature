@@ -83,4 +83,10 @@ Scenario: Add a Review with a long Username
 	When I click the Submit button
 	Then I should get '1' error message
 		And the error text should read 'Exceeded max field size'
+<<<<<<< Updated upstream
+=======
+	Examples: 
+	| username											  | starRating | comments		  |
+	| ThisIsAVeryLongUserNameThatShouldNotPassValidation! | Rating_1   | I didn't like it |
+>>>>>>> Stashed changes
 		
