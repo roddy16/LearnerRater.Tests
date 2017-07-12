@@ -152,25 +152,10 @@ this.AddANewResource("Other", ((string[])(null)));
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "NewResourcePage")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "NCrunch")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:subject", "NCrunch")]
-<<<<<<< Updated upstream
         public virtual void AddANewResource_NCrunch()
         {
 #line 11
 this.AddANewResource("NCrunch", ((string[])(null)));
-=======
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:title", "Crunching N Time")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:author", "Dr. Suess")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:description", "Learn all about NCrunch")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:website", "LearnStuff")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:link", "http://learnncrunchstuff.com/")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:username", "sRods")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:rating", "Rating_5")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:comments", "It was awesome!!!!")]
-        public virtual void AddANewResource_NCrunch()
-        {
-#line 11
-this.AddANewResource("NCrunch", "Crunching N Time", "Dr. Suess", "Learn all about NCrunch", "LearnStuff", "http://learnncrunchstuff.com/", "sRods", "Rating_5", "It was awesome!!!!", ((string[])(null)));
->>>>>>> Stashed changes
 #line hidden
         }
         
@@ -218,28 +203,6 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
         }
-<<<<<<< Updated upstream
-=======
-        
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Cancel a New Resource: JavaScript")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "NewResourcePage")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "JavaScript")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:subject", "JavaScript")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:title", "JavaScript Not Java")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:author", "J.S. Manwell")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:description", "Learn javascript not Java")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:website", "JS Site")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:link", "http://jssite.com/")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:username", "sRods")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:rating", "Rating_1")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:comments", "It was meh!!!!")]
-        public virtual void CancelANewResource_JavaScript()
-        {
-#line 25
-this.CancelANewResource("JavaScript", "JavaScript Not Java", "J.S. Manwell", "Learn javascript not Java", "JS Site", "http://jssite.com/", "sRods", "Rating_1", "It was meh!!!!", ((string[])(null)));
-#line hidden
-        }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add a Resource without Title, Author, Description, Website, Link, Username or Sta" +
@@ -249,123 +212,109 @@ this.CancelANewResource("JavaScript", "JavaScript Not Java", "J.S. Manwell", "Le
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add a Resource without Title, Author, Description, Website, Link, Username or Sta" +
                     "r Rating", ((string[])(null)));
-#line 36
-this.ScenarioSetup(scenarioInfo);
-#line 37
- testRunner.Given("I have selected \'Git\' as the category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 38
-  testRunner.And("I have clicked the Add Resource Link button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+this.ScenarioSetup(scenarioInfo);
 #line 39
- testRunner.When("I click the Resource Submit button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given("I have selected \'Git\' as the category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 40
- testRunner.Then("I should get \'7\' error messages", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+  testRunner.And("I have clicked the Add Resource Link button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 41
+ testRunner.When("I click the Resource Submit button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 42
+ testRunner.Then("I should get \'7\' error messages", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 43
   testRunner.And("the error text should read \'Required\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
         
-        public virtual void AddAResourceWithALongTitleAuthorWebsiteLinkAndUsername(string subject, string title, string author, string description, string website, string link, string username, string rating, string comments, string[] exampleTags)
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add a Resource with a long Title, Author, Website, Link and Username")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "NewResourcePage")]
+        public virtual void AddAResourceWithALongTitleAuthorWebsiteLinkAndUsername()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add a Resource with a long Title, Author, Website, Link and Username", exampleTags);
-#line 43
-this.ScenarioSetup(scenarioInfo);
-#line 44
- testRunner.Given(string.Format("I have selected \'{0}\' as the category", subject), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add a Resource with a long Title, Author, Website, Link and Username", ((string[])(null)));
 #line 45
+this.ScenarioSetup(scenarioInfo);
+#line 46
+ testRunner.Given("I have selected \'<subject>\' as the category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 47
   testRunner.And("I have clicked the Add Resource Link button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
                         "fieldName",
                         "maxCharacters"});
-            table1.AddRow(new string[] {
+            table3.AddRow(new string[] {
                         "title",
                         "100"});
-            table1.AddRow(new string[] {
+            table3.AddRow(new string[] {
                         "author",
                         "50"});
-            table1.AddRow(new string[] {
+            table3.AddRow(new string[] {
                         "website",
                         "50"});
-            table1.AddRow(new string[] {
+            table3.AddRow(new string[] {
                         "link",
                         "2048"});
-            table1.AddRow(new string[] {
+            table3.AddRow(new string[] {
                         "username",
                         "50"});
-#line 46
-  testRunner.And("I have entered more than the maximum allowed characters for the following fields", ((string)(null)), table1, "And ");
-#line 53
- testRunner.When("I click the Resource Submit button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 54
- testRunner.Then("I should get \'5\' error messages", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 48
+  testRunner.And("I have entered more than the maximum allowed characters for the following fields", ((string)(null)), table3, "And ");
 #line 55
+ testRunner.When("I click the Resource Submit button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 56
+ testRunner.Then("I should get \'5\' error messages", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 57
   testRunner.And("the error text should read \'Exceeded max field size\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add a Resource with a long Title, Author, Website, Link and Username: JavaScript")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add a Resource with a link missing http:// or https://")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "NewResourcePage")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "JavaScript")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:subject", "JavaScript")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:title", "JavaScript Not Java")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:author", "J.S. Manwell")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:description", "Learn javascript not Java")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:website", "JS Site")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:link", "http://jssite.com/")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:username", "sRods")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:rating", "Rating_1")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:comments", "It was meh!!!!")]
-        public virtual void AddAResourceWithALongTitleAuthorWebsiteLinkAndUsername_JavaScript()
+        public virtual void AddAResourceWithALinkMissingHttpOrHttps()
         {
-#line 43
-this.AddAResourceWithALongTitleAuthorWebsiteLinkAndUsername("JavaScript", "JavaScript Not Java", "J.S. Manwell", "Learn javascript not Java", "JS Site", "http://jssite.com/", "sRods", "Rating_1", "It was meh!!!!", ((string[])(null)));
-#line hidden
-        }
-        
-        public virtual void AddAResourceWithALinkMissingHttpOrHttps(string subject, string title, string author, string description, string website, string link, string username, string rating, string comments, string[] exampleTags)
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add a Resource with a link missing http:// or https://", exampleTags);
-#line 60
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add a Resource with a link missing http:// or https://", ((string[])(null)));
+#line 59
 this.ScenarioSetup(scenarioInfo);
+#line 60
+ testRunner.Given("I have selected \'NCrunch\' as the category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 61
- testRunner.Given(string.Format("I have selected \'{0}\' as the category", subject), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 62
   testRunner.And("I have clicked the Add Resource Link button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 63
-  testRunner.And(string.Format("I have entered a resource with {0}, {1}, {2}, {3}, {4}, {5}, {6}, {7} and {8}", subject, title, author, description, website, link, username, rating, comments), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 64
- testRunner.When("I click the Resource Submit button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+            TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Category",
+                        "Title",
+                        "Author",
+                        "Description",
+                        "Website",
+                        "Link",
+                        "Username",
+                        "Rating",
+                        "Comment"});
+            table4.AddRow(new string[] {
+                        "NCrunch",
+                        "Crunching N Time",
+                        "Dr. Suess",
+                        "Learn all about NCrunch",
+                        "LearnStuff",
+                        "wwww.learnstuff.com/",
+                        "sRods",
+                        "5",
+                        "It was awesome!!!!"});
+#line 62
+  testRunner.And("I have entered the following resource", ((string)(null)), table4, "And ");
 #line 65
- testRunner.Then("I should get \'1\' error message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("I click the Resource Submit button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 66
+ testRunner.Then("I should get \'1\' error message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 67
   testRunner.And("the error text should read \'URL link should start with http:// OR https://\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
-        
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add a Resource with a link missing http:// or https://: JavaScript")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "NewResourcePage")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "JavaScript")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:subject", "JavaScript")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:title", "JavaScript Not Java")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:author", "J.S. Manwell")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:description", "Learn javascript not Java")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:website", "JS Site")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:link", "justasite.com")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:username", "sRods")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:rating", "Rating_1")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:comments", "It was meh!!!!")]
-        public virtual void AddAResourceWithALinkMissingHttpOrHttps_JavaScript()
-        {
-#line 60
-this.AddAResourceWithALinkMissingHttpOrHttps("JavaScript", "JavaScript Not Java", "J.S. Manwell", "Learn javascript not Java", "JS Site", "justasite.com", "sRods", "Rating_1", "It was meh!!!!", ((string[])(null)));
-#line hidden
-        }
->>>>>>> Stashed changes
     }
 }
 #pragma warning restore

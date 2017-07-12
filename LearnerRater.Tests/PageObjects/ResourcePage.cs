@@ -178,13 +178,7 @@ namespace LearnerRater.Tests.PageObjects
             return webDriver.FindElements(By.ClassName("form--add-resource")).Count > 0;
         }
 
-<<<<<<< Updated upstream
         public ResourcePage AddResourceFields(Resource resource)
-=======
-        public ResourcePage AddResourceFields(
-            string subject, string title, string author, string description = "Anything", string website = "Learn Something",
-            string link = "www.something.com", string userName = "sRods", string rating = "Rating_1", string comments = "It was ok")
->>>>>>> Stashed changes
         {
             ResourceCategory.SelectByText(resource.Category);
             ResourceTitle.SendKeys(resource.Title);
@@ -210,7 +204,6 @@ namespace LearnerRater.Tests.PageObjects
 
         public bool IsResourceListed(Resource resource)
         {
-<<<<<<< Updated upstream
             return (ResourceList[0].Text.Contains(resource.Title)
                  && ResourceList[0].Text.Contains(resource.Author)
                  && ResourceList[0].Text.Contains(resource.Description)
@@ -222,24 +215,7 @@ namespace LearnerRater.Tests.PageObjects
             var resourceLink = webDriver.FindElement(By.LinkText(resource.Title)).GetAttribute("href");
 
             return IsResourceListed(resource) && resource.Link.Equals(resourceLink);
-=======
-            var scenarioTitle = ScenarioContext.Current.ScenarioInfo.Title;
 
-            if (scenarioTitle.Equals("Add a New Resource"))
-            {
-
-                return (ResourceList[0].Text.Contains(title)
-                    && ResourceList[0].Text.Contains(author)
-                    && ResourceList[0].Text.Contains(description)
-                    && ResourceList[0].Text.Contains(website))
-                    && link.Equals(FindResourceLink(title)) ? true : false;
-            }
-
-            return (ResourceList[0].Text.Contains(title)
-                 && ResourceList[0].Text.Contains(author)
-                 && ResourceList[0].Text.Contains(description)
-                 && ResourceList[0].Text.Contains(website)) ? true : false;
->>>>>>> Stashed changes
         }
 
         public int GetResourceCountDifference(string key)

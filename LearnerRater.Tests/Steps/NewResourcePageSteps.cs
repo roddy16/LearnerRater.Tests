@@ -27,17 +27,9 @@ namespace LearnerRater.Tests.Steps
         {
             resourcePage.AddNewResource();
         }
-<<<<<<< Updated upstream
         
         [Given(@"I have entered the following resource")]
         public void GivenIHaveEnteredTheFollowingResource(Table table)
-=======
-
-        [Given(@"I have entered a resource with (.*), (.*), (.*), (.*), (.*), (.*), (.*), (.*) and (.*)")]
-        public void GivenIHaveEnteredAResourceWith_Subject_Title_Author_Description_Website_Link_Username_Rating_And_Comments(
-            string subject, string title, string author, string description, string website,
-            string link, string userName, string rating, string comments)
->>>>>>> Stashed changes
         {
             context.Resource = table.CreateInstance<Resource>();
 
@@ -144,10 +136,10 @@ namespace LearnerRater.Tests.Steps
                 .BeFalse();
         }
 
-        [Given(@"I have entered more than the maximum allowed characters for the following fields")]
-        public void GivenIHaveEnteredMoreThanTheMaximumAllowedCharactersForTheFollowingFields(Table table)
-        {
-            resourcePage.AddResourceFields("Git", StringExtensions.CreateLargeString($"{table.Rows[0][1]}"),"", "", "", "", "", "", "");
-        } 
+        //[Given(@"I have entered more than the maximum allowed characters for the following fields")]
+        //public void GivenIHaveEnteredMoreThanTheMaximumAllowedCharactersForTheFollowingFields(Table table)
+        //{
+        //    resourcePage.AddResourceFields("Git", StringExtensions.CreateLargeString($"{table.Rows[0][1]}"),"", "", "", "", "", "", "");
+        //} 
     }
 }

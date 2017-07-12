@@ -60,7 +60,7 @@ Scenario: Delete a Resource
 		And I have clicked the Add Resource Link button
 		And I have entered the following resource
 		| Category	 | Title		       | Author       | Description                 | Website | Link				  | Username | Rating   | Comment       |
-		| JavaScript | JavaScript Not Java | J.S. Manwell | Learn javascript not Java   | JS Site | http://jssite.com/    | sRods    | 1 | It was meh!!!! |
+		| JavaScript | JavaScript Not Java | J.S. Manwell | Learn javascript not Java   | JS Site | http://jssite.com/    | sRods    | 1		| It was meh!!!! |
 		And I have clicked the Resource Submit button
 		And I have clicked the manage button
 	When I click the resource Delete button
@@ -83,10 +83,4 @@ Scenario: Add a Review with a long Username
 	When I click the Submit button
 	Then I should get '1' error message
 		And the error text should read 'Exceeded max field size'
-<<<<<<< Updated upstream
-=======
-	Examples: 
-	| username											  | starRating | comments		  |
-	| ThisIsAVeryLongUserNameThatShouldNotPassValidation! | Rating_1   | I didn't like it |
->>>>>>> Stashed changes
 		
