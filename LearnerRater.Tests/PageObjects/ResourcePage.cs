@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using LearnerRater.Tests.Contexts;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,7 @@ namespace LearnerRater.Tests.PageObjects
         public IWebElement SubmitReviewButton => webDriver.FindElement(By.Id("btnSubmitRating"));
         public IWebElement CancelReviewButton => webDriver.FindElement(By.Id("btnCancelRating"));
         public IWebElement UsernameInput => webDriver.FindElement(By.Id("inputUsername"));
-        public IWebElement StarRating(string starRating) => webDriver.FindElement(By.Id(starRating));
+        public IWebElement StarRating(int rating) => webDriver.FindElement(By.Id($"Rating_{rating}"));
         public IWebElement UserComment => webDriver.FindElement(By.Id("inputComment"));
         public IWebElement ManageButton => webDriver.FindElement(By.Id("btnToggleManage"));
         public IWebElement DeleteReviewButton(int reviewCount) => webDriver.FindElement(By.Id("btnDeleteReview_" + (reviewCount - 1)));
@@ -55,22 +56,24 @@ namespace LearnerRater.Tests.PageObjects
 
         public bool IsCorrectResourcePageDisplayed(string subject)
         {
-            return webDriver.Url.Equals(baseUrl + "/resources/" + subject) ? true : false;
+            return webDriver.Url.Equals(baseUrl + "/resources/" + subject);
         }
 
         public ResourcePage ToggleReviews()
         {
-            wait.Until(ExpectedConditions.ElementIsVisible(By.Id("btnToggleReviewVisibility")));
             ToggleReviewsButton.Click();
+
+            /*
+                TODO: Need to find a way to wait for jQuery animation before continuing. The delay that it takes to show/hide the reviews is making tests
+                fail.
+            */
+            Thread.Sleep(1000);
 
             return this;
         }
 
         public bool IsReviewContainerDisplayed()
         {
-            //TODO find a more graceful way to handle this scenario. Without the thread.sleep call, the 'hidereviews' test fails because the browswer refreshes slower than the driver navigates
-            Thread.Sleep(1000);
-
             return !UserReviews.ElementAt(0).GetAttribute("style").Equals("display: none;");
         }
 
@@ -81,7 +84,6 @@ namespace LearnerRater.Tests.PageObjects
 
         public ResourcePage OpenAddReviewOverlay()
         {
-            wait.Until(ExpectedConditions.ElementIsVisible(By.Id("btnAddReview")));
             AddReviewButton.Click();
 
             return this;
@@ -89,7 +91,7 @@ namespace LearnerRater.Tests.PageObjects
 
         public bool IsAddReviewOverlayDisplayed()
         {
-            return webDriver.FindElements(By.ClassName("overlay-container")).Count > 0 ? true : false;
+            return webDriver.FindElements(By.ClassName("overlay-container")).Count > 0;
         }
 
         public ResourcePage AddReviewSubmitButton()
@@ -109,19 +111,18 @@ namespace LearnerRater.Tests.PageObjects
             return this;
         }
 
-        public ResourcePage AddReviewFields(string userName, string stars, string comments)
+        public ResourcePage AddReviewFields(Resource resource)
         {
-            UsernameInput.SendKeys(userName);
-            StarRating(stars).Click();
-            UserComment.SendKeys(comments);
+            UsernameInput.SendKeys(resource.Username);
+            StarRating(resource.Rating).Click();
+            UserComment.SendKeys(resource.Comment);
 
             return this;
         }
 
-        public bool IsReviewListed(string userName, string comments)
+        public bool IsReviewListed(Resource resource)
         {
-            wait.Until(ExpectedConditions.ElementIsVisible(By.Id("Rating_5")));
-            return (UserReviews[0].Text.Contains(userName) && UserReviews[0].Text.Contains(comments)) ? true : false;
+            return (UserReviews[0].Text.Contains(resource.Username) && UserReviews[0].Text.Contains(resource.Comment));
         }
 
         public ResourcePage ToggleManageButton()
@@ -136,7 +137,6 @@ namespace LearnerRater.Tests.PageObjects
             int reviewCount = GetNumberOfReviews();
             AddToScenarioContext("BeforeDelete", reviewCount);
 
-            wait.Until(ExpectedConditions.ElementIsVisible(By.Id("btnDeleteReview_" + (reviewCount - 1))));
             DeleteReviewButton(reviewCount).Click();
 
             return this;
@@ -174,22 +174,20 @@ namespace LearnerRater.Tests.PageObjects
 
         public bool DoesAddResourceFormExist()
         {
-            return webDriver.FindElements(By.ClassName("form--add-resource")).Count > 0 ? true : false;
+            return webDriver.FindElements(By.ClassName("form--add-resource")).Count > 0;
         }
 
-        public ResourcePage AddResourceFields(
-            string subject, string title, string author, string description, string website,
-            string link, string userName, string rating, string comments)
+        public ResourcePage AddResourceFields(Resource resource)
         {
-            ResourceCategory.SelectByText(subject);
-            ResourceTitle.SendKeys(title);
-            ResourceAuthor.SendKeys(author);
-            ResourceDescription.SendKeys(description);
-            ResourceWebsite.SendKeys(website);
-            ResourceLink.SendKeys(link);
-            UsernameInput.SendKeys(userName);
-            StarRating(rating).Click();
-            UserComment.SendKeys(comments);
+            ResourceCategory.SelectByText(resource.Category);
+            ResourceTitle.SendKeys(resource.Title);
+            ResourceAuthor.SendKeys(resource.Author);
+            ResourceDescription.SendKeys(resource.Description);
+            ResourceWebsite.SendKeys(resource.Website);
+            ResourceLink.SendKeys(resource.Link);
+            UsernameInput.SendKeys(resource.Username);
+            StarRating(resource.Rating).Click();
+            UserComment.SendKeys(resource.Comment);
 
             return this;
         }
@@ -201,25 +199,19 @@ namespace LearnerRater.Tests.PageObjects
             return this;
         }
 
-        public bool IsResourceListed(string title, string author, string description, string website, string link)
+        public bool IsResourceListed(Resource resource)
         {
-            var scenarioTitle = ScenarioContext.Current.ScenarioInfo.Title;
+            return (ResourceList[0].Text.Contains(resource.Title)
+                 && ResourceList[0].Text.Contains(resource.Author)
+                 && ResourceList[0].Text.Contains(resource.Description)
+                 && ResourceList[0].Text.Contains(resource.Website));
+        }
 
-            if (scenarioTitle.Equals("Add a New Resource"))
-            {
-                var resourceLink = webDriver.FindElement(By.LinkText(title)).GetAttribute("href");
+        public bool IsSuccessfullyCreateResourceListed(Resource resource)
+        {
+            var resourceLink = webDriver.FindElement(By.LinkText(resource.Title)).GetAttribute("href");
 
-                return (ResourceList[0].Text.Contains(title)
-                    && ResourceList[0].Text.Contains(author)
-                    && ResourceList[0].Text.Contains(description)
-                    && ResourceList[0].Text.Contains(website))
-                    && link.Equals(resourceLink) ? true : false;
-            }
-
-            return (ResourceList[0].Text.Contains(title)
-                 && ResourceList[0].Text.Contains(author)
-                 && ResourceList[0].Text.Contains(description)
-                 && ResourceList[0].Text.Contains(website)) ? true : false;
+            return IsResourceListed(resource) && resource.Link.Equals(resourceLink);
         }
 
         public int GetResourceCountDifference(string key)
@@ -246,7 +238,7 @@ namespace LearnerRater.Tests.PageObjects
 
         public bool IsAddResourceFormDisplayed()
         {
-            return webDriver.FindElements(By.ClassName("form--add-resource")).Count > 0 ? true : false;
+            return webDriver.FindElements(By.ClassName("form--add-resource")).Count > 0;
         }
 
         public ResourcePage DeleteResourceButton()
@@ -254,7 +246,6 @@ namespace LearnerRater.Tests.PageObjects
             int resourceCount = GetNumberOfResources();
             AddToScenarioContext("BeforeDelete", resourceCount);
 
-            wait.Until(ExpectedConditions.ElementIsVisible(By.Id("deleteResource_" + (resourceCount - 1))));
             DeleteResourceButton(resourceCount).Click();
             webDriver.SwitchTo().Alert().Accept();
 

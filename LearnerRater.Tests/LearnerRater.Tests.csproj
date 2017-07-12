@@ -89,6 +89,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contexts\ResourcePageContext.cs" />
+    <Compile Include="Contexts\Review.cs" />
+    <Compile Include="Contexts\Resource.cs" />
     <Compile Include="Features\NewResourcePage.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -112,6 +115,7 @@
     <Compile Include="Steps\ResourceSubjectsPageSteps.cs" />
     <Compile Include="Steps\_BaseSteps.cs" />
     <Compile Include="Utils\DatabaseCommands.cs" />
+    <Compile Include="Enums\Order.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Brysen.config">

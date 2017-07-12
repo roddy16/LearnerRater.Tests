@@ -29,6 +29,7 @@ namespace LearnerRater.Tests.Steps
             var options = new ChromeOptions();
             options.AddArgument("--start-maximized");
             webDriver = new ChromeDriver(options);
+            webDriver.Manage().Timeouts().ImplicitWait = ts;
             objectContainer.RegisterInstanceAs(webDriver);
 
             wait = new WebDriverWait(webDriver, ts);

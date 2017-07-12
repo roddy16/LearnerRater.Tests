@@ -21,55 +21,51 @@ Scenario: Display Review Overlay
 	When I click You Be The Judge button
 	Then the Add Review overlay should appear
 
-Scenario Outline: Add a Review
+Scenario: Add a Review
 	Given I have selected 'Git' as the category
 		And I have opened the Add Review overlay
-		And I have entered a review with <username>, <starRating> and <comments>
+		And I have entered the following review
+		| Username         | Rating | Comment        |
+		| Mr. Bigglesworth | 2      | It was just ok |
 	When I click the Submit button
 	Then the overlay should close
-		And the review by <username> should be added to the resource with their <comments>
+		And the new review should display the information entered
 		And the total count of reviews for that resource should be incremented by 1
-	Examples: 
-		| username         | starRating | comments       |
-		| Mr. Bigglesworth | Rating_2   | It was just ok |
 
-Scenario Outline: Cancel Adding a Review
+Scenario: Cancel Adding a Review
 	Given I have selected 'Git' as the category
 		And I have opened the Add Review overlay
-		And I have entered a review with <username>, <starRating> and <comments>
+		And I have entered the following review
+		| Username     | Rating | Comment          |
+		| TuffReviewer | 1      | I didn't like it |
 	When I click the Cancel button
 	Then the overlay should close
-		And the review by <username> should not be added to the resource with their <comments>
-	Examples: 
-		| username     | starRating | comments		   |
-		| TuffReviewer | Rating_1   | I didn't like it |
+		And the new review should not be added to the resource
 
-Scenario Outline: Delete a Review
+Scenario: Delete a Review
 	Given I have selected 'Git' as the category
 		And I have opened the Add Review overlay
-		And I have entered a review with <username>, <starRating> and <comments>
+		And I have entered the following review
+		| Username     | Rating | Comment          |
+		| TuffReviewer | 1      | I didn't like it |
 		And I have clicked the Submit button
 		And I have clicked Show Reviews
 		And I have clicked the manage button
 	When I click the review Delete button
-	Then the review by <username> with <comments> should be deleted from the resource
+	Then the review should be deleted from the resource
 		And the total count of reviews for that resource should be reduced by 1
-	Examples: 
-		| username     | starRating | comments		   |
-		| TuffReviewer | Rating_1   | I didn't like it |
 
-Scenario Outline: Delete a Resource
-	Given I have selected '<subject>' as the category
+Scenario: Delete a Resource
+	Given I have selected 'JavaScript' as the category
 		And I have clicked the Add Resource Link button
-		And I have entered a resource with <subject>, <title>, <author>, <description>, <website>, <link>, <username>, <rating> and <comments>
+		And I have entered the following resource
+		| Category	 | Title		       | Author       | Description                 | Website | Link				  | Username | Rating   | Comment       |
+		| JavaScript | JavaScript Not Java | J.S. Manwell | Learn javascript not Java   | JS Site | http://jssite.com/    | sRods    | 1 | It was meh!!!! |
 		And I have clicked the Resource Submit button
 		And I have clicked the manage button
 	When I click the resource Delete button
-	Then the new resource <title> by <author> about <description> on <website> at <link> should not be added to the resource page
+	Then the new resource should not be added to the resource page
 		And the total count of resources for that subject should be reduced by 1
-	Examples: 
-	| subject	 | title		       | author       | description                 | website | link				  | username | rating   | comments       |
-	| JavaScript | JavaScript Not Java | J.S. Manwell | Learn javascript not Java   | JS Site | http://jssite.com/    | sRods    | Rating_1 | It was meh!!!! |
 
 Scenario: Add a Review without Username or Star Rating
 	Given I have selected 'Git' as the category
@@ -78,14 +74,13 @@ Scenario: Add a Review without Username or Star Rating
 	Then I should get '2' error messages
 		And the error text should read 'Required'
 
-Scenario Outline: Add a Review with a long Username
+Scenario: Add a Review with a long Username
 	Given I have selected 'Git' as the category
 		And I have opened the Add Review overlay
-		And I have entered a review with <username>, <starRating> and <comments>
+		And I have entered the following review
+		| Username                                            | Rating | Comment          |
+		| ThisIsAVeryLongUserNameThatShouldNotPassValidation! | 1      | I didn't like it |
 	When I click the Submit button
 	Then I should get '1' error message
 		And the error text should read 'Exceeded max field size'
-	Examples: 
-	| username											  | starRating | comments		   |
-	| ThisIsAVeryLongUserNameThatShouldNotPassValidation! | Rating_1   | I didn't like it |
 		

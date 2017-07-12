@@ -30,7 +30,6 @@ namespace LearnerRater.Tests.PageObjects
 
         public ResourcePage SelectSubject(string subject)
         {
-            wait.Until(ExpectedConditions.ElementIsVisible(By.PartialLinkText(subject)));
             webDriver.FindElement(By.PartialLinkText(subject)).Click();
 
             return new ResourcePage(webDriver, wait);

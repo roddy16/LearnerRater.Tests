@@ -1,6 +1,8 @@
 ﻿using LearnerRater.Tests.PageObjects;
 using FluentAssertions;
 using TechTalk.SpecFlow;
+using LearnerRater.Tests.Contexts;
+using TechTalk.SpecFlow.Assist;
 
 namespace LearnerRater.Tests.Steps
 {
@@ -8,10 +10,12 @@ namespace LearnerRater.Tests.Steps
     public sealed class ResourcePageSteps
     {
         private readonly ResourcePage resourcePage;
+        private readonly ResourcePageContext context;
 
-        public ResourcePageSteps(ResourcePage resourcePage)
+        public ResourcePageSteps(ResourcePage resourcePage, ResourcePageContext context)
         {
             this.resourcePage = resourcePage;
+            this.context = context;
         }
 
         [Given(@"I have selected '(.*)' as the category")]
@@ -35,10 +39,12 @@ namespace LearnerRater.Tests.Steps
             resourcePage.ToggleReviews();
         }
 
-        [Given(@"I have entered a review with (.*), (.*) and (.*)")]
-        public void GiveIHaveEnteredAReviewWith_UserName_StarRating_and_Comments(string userName, string starRating, string comments)
+        [Given(@"I have entered the following review")]
+        public void GivenIHaveEnteredTheFollowingReview(Table table)
         {
-            resourcePage.AddReviewFields(userName, starRating, comments);
+            context.Resource = table.CreateInstance<Resource>();
+
+            resourcePage.AddReviewFields(context.Resource);
         }
 
         [When(@"I click the Submit button")]
@@ -108,17 +114,28 @@ namespace LearnerRater.Tests.Steps
                 .BeFalse();
         }
 
-        [Then(@"the review by (.*) should be added to the resource with their (.*)")]
-        [Then(@"the new resource should have (.*) by (.*) listed")]
-        public void ThenTheReviewBy_UserName_ShouldBeAddedToTheResourceWithTheir_Comments(string userName, string comments)
+        [Then(@"the new review should display the information entered")]
+        public void ThenTheNewReviewShouldDisplayTheInformationEntered()
         {
             resourcePage.ToggleReviews();
 
             resourcePage
-                .IsReviewListed(userName, comments)
+                .IsReviewListed(context.Resource)
                 .Should()
                 .BeTrue();
         }
+
+        [Then(@"the new resource should have added a review")]
+        public void ThenTheNewResourceShouldHaveAddedAReview()
+        {
+            resourcePage.ToggleReviews();
+
+            resourcePage
+                .IsReviewListed(context.Resource)
+                .Should()
+                .BeTrue();
+        }
+
 
         [Then(@"the total count of reviews for that resource should be incremented by 1")]
         public void ThenTheTotalCountOfReviewsForThatResourceShouldBeIncrementedBy1()
@@ -129,16 +146,17 @@ namespace LearnerRater.Tests.Steps
                 .Be(-1);
         }
 
-        [Then(@"the review by (.*) should not be added to the resource with their (.*)")]
-        public void ThenTheReviewBy_UserName_ShouldNotBeAddedToTheResourceWithTheir_Comments(string userName, string comments)
+        [Then(@"the new review should not be added to the resource")]
+        public void ThenTheNewReviewShouldNotBeAddedToTheResource()
         {
             resourcePage.ToggleReviews();
 
             resourcePage
-                .IsReviewListed(userName, comments)
+                .IsReviewListed(context.Resource)
                 .Should()
                 .BeFalse();
         }
+
 
         [Given(@"I have clicked the manage button")]
         public void GivenIHaveClickedTheManageButton()
@@ -152,11 +170,11 @@ namespace LearnerRater.Tests.Steps
             resourcePage.DeleteReviewButton();
         }
 
-        [Then(@"the review by (.*) with (.*) should be deleted from the resource")]
-        public void ThenTheReviewBy_UserName_ShouldBeDeletedFromTheResource(string userName, string comments)
+        [Then(@"the review should be deleted from the resource")]
+        public void ThenTheReviewShouldBeDeletedFromTheResource()
         {
             resourcePage
-                .IsReviewListed(userName, comments)
+                .IsReviewListed(context.Resource)
                 .Should()
                 .BeFalse();
         }

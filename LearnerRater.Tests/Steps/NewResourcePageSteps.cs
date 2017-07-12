@@ -1,6 +1,8 @@
 ﻿using FluentAssertions;
 using LearnerRater.Tests.PageObjects;
 using TechTalk.SpecFlow;
+using LearnerRater.Tests.Contexts;
+using TechTalk.SpecFlow.Assist;
 
 namespace LearnerRater.Tests.Steps
 {
@@ -9,11 +11,13 @@ namespace LearnerRater.Tests.Steps
     {
         private readonly ResourcePage resourcePage;
         private readonly ResourceSubjectsPage resourceSubjectsPage;
+        private readonly ResourcePageContext context;
 
-        public NewResourcePageSteps(ResourcePage resourcePage, ResourceSubjectsPage resourceSubjectsPage)
+        public NewResourcePageSteps(ResourcePage resourcePage, ResourceSubjectsPage resourceSubjectsPage, ResourcePageContext context)
         {
             this.resourcePage = resourcePage;
             this.resourceSubjectsPage = resourceSubjectsPage;
+            this.context = context;
         }
 
         [When(@"I click the Add Resource Link button")]
@@ -23,14 +27,14 @@ namespace LearnerRater.Tests.Steps
             resourcePage.AddNewResource();
         }
         
-        [Given(@"I have entered a resource with (.*), (.*), (.*), (.*), (.*), (.*), (.*), (.*) and (.*)")]
-        public void GivenIHaveEnteredAResourceWith_Subject_Title_Author_Description_Website_Link_Username_Rating_And_Comments(
-            string subject, string title, string author, string description, string website, 
-            string link, string userName, string rating, string comments)
+        [Given(@"I have entered the following resource")]
+        public void GivenIHaveEnteredTheFollowingResource(Table table)
         {
-            resourcePage.AddResourceFields(subject, title, author, description, website, link, userName, rating, comments);
+            context.Resource = table.CreateInstance<Resource>();
+
+            resourcePage.AddResourceFields(context.Resource);
         }
-        
+
         [When(@"I click the Resource Submit button")]
         [Given(@"I have clicked the Resource Submit button")]
         public void WhenIClickTheResourceSubmitButton()
@@ -52,22 +56,21 @@ namespace LearnerRater.Tests.Steps
                 .Should()
                 .BeTrue();
         }
-        
-        [Then(@"I should be redirected to the (.*) resource page")]
-        public void ThenIShouldBeRedirectedToThe_Subject_ResourcePage(string subject)
+
+        [Then(@"I should be redirected to the selected resource page")]
+        public void ThenIShouldBeRedirectedToTheSelectedResourcePage()
         {
             resourcePage
-                .IsCorrectResourcePageDisplayed(subject)
+                .IsCorrectResourcePageDisplayed(context.Resource.Category)
                 .Should()
                 .BeTrue();
         }
-        
-        [Then(@"the new resource (.*), (.*), (.*), (.*) and (.*) should display")]
-        public void ThenTheNewResource_Title_Author_Description_Website_And_Link_ShouldDisplay(
-            string title, string author, string description, string website, string link)
+
+        [Then(@"the new resource should display the information entered")]
+        public void ThenTheNewResourceShouldDisplayTheInformationEntered()
         {
             resourcePage
-                .IsResourceListed(title, author, description, website, link)
+                .IsSuccessfullyCreateResourceListed(context.Resource)
                 .Should()
                 .BeTrue();
         }
@@ -102,15 +105,15 @@ namespace LearnerRater.Tests.Steps
                 .Be(-1);
         }
 
-        [Then(@"the total count of resources for '(.*)' should be displayed on the resource subjects page as '(.*)'")]
-        public void ThenTheTotalCountOfResourcesForShouldBeDisplayedOnTheResourceSubjectsPageAs(string category, int numberOfResources)
+        [Then(@"the total count of resources for that subject should be displayed on the resource subjects page as '(.*)'")]
+        public void ThenTheTotalCountOfResourcesForThatSubjectShouldBeDisplayedOnTheResourceSubjectsPageAs(int numberOfResources)
         {
             resourceSubjectsPage
                 .BackToSubjectsPageButton
                 .Click();
 
             resourceSubjectsPage
-                .NumberOfResources(category).Text
+                .NumberOfResources(context.Resource.Category).Text
                 .Should()
                 .Be($"{numberOfResources}");
         }
@@ -123,13 +126,11 @@ namespace LearnerRater.Tests.Steps
                 .Should()
                 .BeFalse();
         }
-
-        [Then(@"the new resource (.*) by (.*) about (.*) on (.*) at (.*) should not be added to the resource page")]
-        public void ThenTheNewResource_Title_By_Author_About_Description_On_Website_At_Link_ShouldNotBeAddedToTheResourcePage(
-            string title, string author, string description, string website, string link)
+        [Then(@"the new resource should not be added to the resource page")]
+        public void ThenTheNewResourceShouldNotBeAddedToTheResourcePage()
         {
             resourcePage
-                .IsResourceListed(title, author, description, website, link)
+                .IsResourceListed(context.Resource)
                 .Should()
                 .BeFalse();
         }
