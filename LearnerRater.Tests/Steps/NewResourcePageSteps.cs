@@ -1,6 +1,6 @@
 ﻿using FluentAssertions;
+using LearnerRater.Tests.Models;
 using LearnerRater.Tests.PageObjects;
-using LearnerRater.Tests.Utils;
 using TechTalk.SpecFlow;
 using LearnerRater.Tests.Contexts;
 using TechTalk.SpecFlow.Assist;
@@ -42,7 +42,14 @@ namespace LearnerRater.Tests.Steps
         {
             resourcePage.AddResourceSubmitButton();
         }
-        
+
+        [Given(@"I have entered more than the maximum allowed characters for the following fields")]
+        public void GivenIHaveEnteredMoreThanTheMaximumAllowedCharactersForTheFollowingFields(Table table)
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+
         [When(@"I click the Resource Cancel button")]
         public void WhenIClickTheResourceCancelButton()
         {

@@ -1,4 +1,4 @@
-﻿using LearnerRater.Tests.Contexts;
+﻿using LearnerRater.Tests.Models;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;

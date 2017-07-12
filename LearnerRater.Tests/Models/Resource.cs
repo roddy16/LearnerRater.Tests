@@ -1,4 +1,4 @@
-﻿namespace LearnerRater.Tests.Contexts
+﻿namespace LearnerRater.Tests.Models
 {
     public class Resource : Review
     {

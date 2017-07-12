@@ -90,8 +90,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contexts\ResourcePageContext.cs" />
-    <Compile Include="Contexts\Review.cs" />
-    <Compile Include="Contexts\Resource.cs" />
+    <Compile Include="Models\Review.cs" />
+    <Compile Include="Models\Resource.cs" />
     <Compile Include="Features\NewResourcePage.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -116,7 +116,6 @@
     <Compile Include="Steps\_BaseSteps.cs" />
     <Compile Include="Utils\DatabaseCommands.cs" />
     <Compile Include="Enums\Order.cs" />
-
     <Compile Include="Utils\StringExtensions.cs" />
   </ItemGroup>
   <ItemGroup>

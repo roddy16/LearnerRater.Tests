@@ -2,6 +2,7 @@
 using FluentAssertions;
 using TechTalk.SpecFlow;
 using LearnerRater.Tests.Contexts;
+using LearnerRater.Tests.Models;
 using TechTalk.SpecFlow.Assist;
 
 namespace LearnerRater.Tests.Steps
