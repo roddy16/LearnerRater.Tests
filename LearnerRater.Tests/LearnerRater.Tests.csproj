@@ -90,6 +90,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contexts\ResourcePageContext.cs" />
+    <Compile Include="Models\Resource.MaxLength.cs" />
+    <Compile Include="Models\Review.MaxLength.cs" />
     <Compile Include="Models\Review.cs" />
     <Compile Include="Models\Resource.cs" />
     <Compile Include="Features\NewResourcePage.feature.cs">
@@ -117,6 +119,7 @@
     <Compile Include="Utils\DatabaseCommands.cs" />
     <Compile Include="Enums\Order.cs" />
     <Compile Include="Utils\StringExtensions.cs" />
+    <Compile Include="Utils\ModelHelpers.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Brysen.config">

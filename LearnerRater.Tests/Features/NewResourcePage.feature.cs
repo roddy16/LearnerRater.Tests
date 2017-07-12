@@ -237,7 +237,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 45
 this.ScenarioSetup(scenarioInfo);
 #line 46
- testRunner.Given("I have selected \'<subject>\' as the category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I have selected \'SpecFlow\' as the category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 47
   testRunner.And("I have clicked the Add Resource Link button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden

@@ -43,7 +43,7 @@ Scenario: Add a Resource without Title, Author, Description, Website, Link, User
 		And the error text should read 'Required'
 
 Scenario: Add a Resource with a long Title, Author, Website, Link and Username
-	Given I have selected '<subject>' as the category
+	Given I have selected 'SpecFlow' as the category
 		And I have clicked the Add Resource Link button
 		And I have entered more than the maximum allowed characters for the following fields
 			| fieldName | maxCharacters |

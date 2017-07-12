@@ -4,6 +4,10 @@ using LearnerRater.Tests.PageObjects;
 using TechTalk.SpecFlow;
 using LearnerRater.Tests.Contexts;
 using TechTalk.SpecFlow.Assist;
+using System;
+using System.Collections.Generic;
+using System.Reflection;
+using LearnerRater.Tests.Utils;
 
 namespace LearnerRater.Tests.Steps
 {
@@ -46,9 +50,13 @@ namespace LearnerRater.Tests.Steps
         [Given(@"I have entered more than the maximum allowed characters for the following fields")]
         public void GivenIHaveEnteredMoreThanTheMaximumAllowedCharactersForTheFollowingFields(Table table)
         {
-            ScenarioContext.Current.Pending();
-        }
+            var resourceMaxLength = table.CreateInstance<ResourceMaxLength>();
 
+            var model = new Resource() { Category = "React", Rating = 1 };
+            var resource = ModelHelpers.CreateModelWithPropertiesExceedingMaxLength(model, resourceMaxLength);
+
+            resourcePage.AddResourceFields(resource);
+        }
 
         [When(@"I click the Resource Cancel button")]
         public void WhenIClickTheResourceCancelButton()
