@@ -84,3 +84,14 @@ Scenario: Add a Review with a long Username
 	Then I should get '1' error message
 		And the error text should read 'Exceeded max field size'
 		
+Scenario: Sort Resource Names by Ascending
+	Given I have selected 'Git' as the category
+		And the sort by resource name option is not already ascending
+	When I click the sort by resource name option
+	Then the resources should be sorted ascending by name
+
+Scenario: Sort Resource Names by Descending
+	Given I have selected 'Git' as the category
+		And the sort by resource name option is not already descending
+	When I click the sort by resource name option
+	Then the resources should be sorted descending by name

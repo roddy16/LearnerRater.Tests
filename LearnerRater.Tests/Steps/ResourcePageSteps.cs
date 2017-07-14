@@ -233,5 +233,40 @@ namespace LearnerRater.Tests.Steps
                 .Should()
                 .Be(errorMessage);
         }
+
+        [Given(@"the sort by resource name option is not already ascending")]
+        public void GivenTheSortByResourceNameOptionIsNotAlreadyAscending()
+        {
+            var sortOrder = resourcePage.ResourceNameSortOrder();
+            resourcePage.AddToScenarioContext("SortOrder", sortOrder);            
+        }
+
+        [When(@"I click the sort by resource name option")]
+        public void WhenIClickTheSortByResourceNameOption()
+        {
+            resourcePage.SortResourceName();
+        }
+
+        [Then(@"the resources should be sorted ascending by name")]
+        public void ThenTheResourcesShouldBeSortedAscendingByName()
+        {
+            resourcePage
+                .CaptureResourceList()
+                .Should()
+                .BeInAscendingOrder();
+        }
+
+        [Given(@"the sort by resource name option is not already descending")]
+        public void GivenTheSortByResourceNameOptionIsNotAlreadyDescending()
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+        [Then(@"the resources should be sorted descending by name")]
+        public void ThenTheResourcesShouldBeSortedDescendingByName()
+        {
+            ScenarioContext.Current.Pending();
+        }
+
     }
 }

@@ -37,10 +37,14 @@ namespace LearnerRater.Tests.PageObjects
         public IWebElement CancelResourceButton => webDriver.FindElement(By.Id("btnCancelCourse"));
         public IWebElement DeleteResourceButton(int resourceCount) => webDriver.FindElement(By.Id("deleteResource_" + (resourceCount - 1)));
         public IWebElement NumberOfResources => webDriver.FindElement(By.Id("numberOfResourcesBadge"));
+        public IWebElement ResourceTitleName(int index) => webDriver.FindElement(By.CssSelector($"#app > div > div > div > div:nth-child(3) > div.resource-list-container > div:nth-child({index}) > div.resource-item__col-1 > div.resource-item__title > h1"));
+        public IWebElement ResourceNameSort => webDriver.FindElement(By.Id("sortByNameButton"));
         public string FindResourceLink(string title) => webDriver.FindElement(By.LinkText(title)).GetAttribute("href");
+
 
         public IList<IWebElement> UserReviews => webDriver.FindElements(By.CssSelector("div[id ^= 'reviewListContainer']"));
         public IList<IWebElement> ResourceList => webDriver.FindElements(By.CssSelector("#app > div > div > div > div:nth-child(3) > div.resource-list-container"));
+        public IList<IWebElement> ResourceListItems => webDriver.FindElements(By.CssSelector($"#app > div > div > div > div:nth-child(3) > div.resource-list-container > div"));
 
         public ResourcePage(IWebDriver webDriver, WebDriverWait wait)
         {
@@ -157,8 +161,9 @@ namespace LearnerRater.Tests.PageObjects
 
             return Convert.ToInt32(numberOfReviews[1]);
         }
-
-        public void AddToScenarioContext(string index, int value)
+        
+        //TODO: should change the object to a generic
+        public void AddToScenarioContext(string index, object value)
         {
             ScenarioContext.Current.Add(index, value);
         }
@@ -262,6 +267,41 @@ namespace LearnerRater.Tests.PageObjects
         public string ErrorMessageText()
         {
             return webDriver.FindElement(By.ClassName("error")).Text;
+        }
+
+        public string ResourceNameSortOrder()
+        {            
+            var titles = CaptureResourceList();
+
+            var ascendingList = titles.OrderBy(x => x);
+
+            return ascendingList.SequenceEqual(titles) ? "ascending" : "descending";
+        }
+
+        public string[] CaptureResourceList()
+        {
+            string[] titles = new string[ResourceListItems.Count];
+
+            for (int i = 0; i < ResourceListItems.Count; i++)
+            {
+                titles[i] = $"{ResourceTitleName(i + 1).Text}";
+            }
+
+            return titles;
+        }
+
+        public void SortResourceName()
+        {
+            if (ScenarioContext.Current["SortOrder"].Equals("ascending"))
+            {
+                //the default is ascending so doing a double click so it goes from asc to desc to asc
+                ResourceNameSort.Click();
+                ResourceNameSort.Click();
+            }
+            else
+            {
+                ResourceNameSort.Click();
+            }
         }
     }
 }
