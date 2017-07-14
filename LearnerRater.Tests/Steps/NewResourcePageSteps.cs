@@ -29,6 +29,7 @@ namespace LearnerRater.Tests.Steps
         [Given(@"I have clicked the Add Resource Link button")]
         public void WhenIClickTheAddResourceLinkButton()
         {
+            context.NumberOfResourcesBeforeAdd = resourcePage.GetNumberOfResources();
             resourcePage.AddNewResource();
         }
         
@@ -95,7 +96,7 @@ namespace LearnerRater.Tests.Steps
         public void ThenTheTotalCountOfResourcesForThatSubjectShouldBeIncrementedBy1()
         {
             resourcePage
-                .GetResourceCountDifference("BeforeAdd")
+                .GetResourceCountDifference(context.NumberOfResourcesBeforeAdd)
                 .Should()
                 .Be(-1);
         }

@@ -53,6 +53,7 @@ namespace LearnerRater.Tests.Steps
         [Given(@"I have clicked the Submit button")]
         public void WhenIClickTheSubmitButton()
         {
+            context.NumberOfReviewsBeforeAdd = resourcePage.GetNumberOfReviews();
             resourcePage.AddReviewSubmitButton();
         }
 
@@ -143,7 +144,7 @@ namespace LearnerRater.Tests.Steps
         public void ThenTheTotalCountOfReviewsForThatResourceShouldBeIncrementedBy1()
         {
             resourcePage
-                .GetReviewCountDifference("BeforeAdd")
+                .GetReviewCountDifference(context.NumberOfReviewsBeforeAdd)
                 .Should()
                 .Be(-1);
         }
@@ -179,7 +180,8 @@ namespace LearnerRater.Tests.Steps
         [When(@"I click the review Delete button")]
         public void WhenIClickTheReviewDeleteButton()
         {
-            resourcePage.DeleteReviewButton();
+            context.NumberOfReviewsBeforeAdd = resourcePage.GetNumberOfReviews();
+            resourcePage.ClickDeleteReviewButton(context.NumberOfReviewsBeforeAdd);
         }
 
         [Then(@"the review should be deleted from the resource")]
@@ -195,22 +197,24 @@ namespace LearnerRater.Tests.Steps
         public void ThenTheTotalCountOfReviewsForThatResourceShouldBeReducedBy1()
         {
             resourcePage
-                .GetReviewCountDifference("BeforeDelete")
+                .GetReviewCountDifference(context.NumberOfReviewsBeforeAdd)
                 .Should()
                 .Be(1);
         }
 
+        //TODO: Add parameter to step to specific which resource to delete
         [When(@"I click the resource Delete button")]
         public void WhenIClickTheResourceDeleteButton()
         {
-            resourcePage.DeleteResourceButton();
+            context.NumberOfResourcesBeforeAdd = resourcePage.GetNumberOfResources();
+            resourcePage.ClickDeleteResourceButton(context.NumberOfResourcesBeforeAdd);
         }
 
         [Then(@"the total count of resources for that subject should be reduced by 1")]
         public void ThenTheTotalCountOfResourcesForThatSubjectShouldBeReducedBy1()
         {
             resourcePage
-                .GetResourceCountDifference("BeforeDelete")
+                .GetResourceCountDifference(context.NumberOfResourcesBeforeAdd)
                 .Should()
                 .Be(1);
         }
@@ -237,14 +241,13 @@ namespace LearnerRater.Tests.Steps
         [Given(@"the sort by resource name option is not already ascending")]
         public void GivenTheSortByResourceNameOptionIsNotAlreadyAscending()
         {
-            var sortOrder = resourcePage.ResourceNameSortOrder();
-            resourcePage.AddToScenarioContext("SortOrder", sortOrder);            
+            context.SortOrder = resourcePage.ResourceNameSortOrder();        
         }
 
         [When(@"I click the sort by resource name option")]
         public void WhenIClickTheSortByResourceNameOption()
         {
-            resourcePage.SortResourceName();
+            resourcePage.SortResourceName(context.SortOrder);
         }
 
         [Then(@"the resources should be sorted ascending by name")]

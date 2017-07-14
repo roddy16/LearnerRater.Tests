@@ -101,9 +101,6 @@ namespace LearnerRater.Tests.PageObjects
 
         public ResourcePage AddReviewSubmitButton()
         {
-            int reviewCount = GetNumberOfReviews();
-            AddToScenarioContext("BeforeAdd", reviewCount);
-
             SubmitReviewButton.Click();
 
             return this;
@@ -137,22 +134,18 @@ namespace LearnerRater.Tests.PageObjects
             return this;
         }
 
-        public ResourcePage DeleteReviewButton()
+        public ResourcePage ClickDeleteReviewButton(int indexOfReviewToDelete)
         {
-            int reviewCount = GetNumberOfReviews();
-            AddToScenarioContext("BeforeDelete", reviewCount);
-
-            DeleteReviewButton(reviewCount).Click();
+            DeleteReviewButton(indexOfReviewToDelete).Click();
 
             return this;
         }
 
-        public int GetReviewCountDifference(string key)
+        public int GetReviewCountDifference(int numberOfReviewsBeforeAdd)
         {
             int reviewCount = GetNumberOfReviews();
-            int beforeActionCount = (int)ScenarioContext.Current[key];
 
-            return beforeActionCount - reviewCount;
+            return numberOfReviewsBeforeAdd - reviewCount;
         }
 
         public int GetNumberOfReviews()
@@ -162,17 +155,14 @@ namespace LearnerRater.Tests.PageObjects
             return Convert.ToInt32(numberOfReviews[1]);
         }
         
-        //TODO: should change the object to a generic
-        public void AddToScenarioContext(string index, object value)
-        {
-            ScenarioContext.Current.Add(index, value);
-        }
+        ////TODO: should change the object to a generic
+        //public void AddToScenarioContext(string index, object value)
+        //{
+        //    ScenarioContext.Current.Add(index, value);
+        //}
 
         public ResourcePage AddNewResource()
         {
-            int resourceCount = GetNumberOfResources();
-            AddToScenarioContext("BeforeAdd", resourceCount);
-
             AddNewResourceLinkButton.Click();
 
             return this;
@@ -221,12 +211,11 @@ namespace LearnerRater.Tests.PageObjects
 
         }
 
-        public int GetResourceCountDifference(string key)
+        public int GetResourceCountDifference(int numberOfResourcesBeforeAdd)
         {
             int resourceCount = GetNumberOfResources();
-            int beforeActionCount = (int)ScenarioContext.Current[key];
 
-            return beforeActionCount - resourceCount;
+            return numberOfResourcesBeforeAdd - resourceCount;
         }
 
         public int GetNumberOfResources()
@@ -248,12 +237,9 @@ namespace LearnerRater.Tests.PageObjects
             return webDriver.FindElements(By.ClassName("form--add-resource")).Count > 0;
         }
 
-        public ResourcePage DeleteResourceButton()
+        public ResourcePage ClickDeleteResourceButton(int indexOfResourceToDelete)
         {
-            int resourceCount = GetNumberOfResources();
-            AddToScenarioContext("BeforeDelete", resourceCount);
-
-            DeleteResourceButton(resourceCount).Click();
+            DeleteResourceButton(indexOfResourceToDelete).Click();
             webDriver.SwitchTo().Alert().Accept();
 
             return this;
@@ -290,9 +276,9 @@ namespace LearnerRater.Tests.PageObjects
             return titles;
         }
 
-        public void SortResourceName()
+        public void SortResourceName(string sortOrder)
         {
-            if (ScenarioContext.Current["SortOrder"].Equals("ascending"))
+            if (sortOrder.Equals("ascending"))
             {
                 //the default is ascending so doing a double click so it goes from asc to desc to asc
                 ResourceNameSort.Click();
