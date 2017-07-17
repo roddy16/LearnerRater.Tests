@@ -275,5 +275,42 @@ namespace LearnerRater.Tests.Steps
                 .Should()
                 .BeInDescendingOrder();
         }
+
+        [Given(@"the sort by resource average rating option is not already ascending")]
+        public void GivenTheSortByResourceAverageRatingOptionIsNotAlreadyAscending()
+        {
+            resourcePage.SortResourceAverageRating(1);
+        }
+
+        [When(@"I click the sort by resource average rating option")]
+        public void WhenIClickTheSortByResourceAverageRatingOption()
+        {
+            resourcePage.SortResourceAverageRating(1);
+        }
+
+        [Then(@"the resources should be sorted ascending by average rating")]
+        public void ThenTheResourcesShouldBeSortedAscendingByAverageRating()
+        {
+            resourcePage
+                .CaptureResourceListStarRatings()
+                .Should()
+                .BeInAscendingOrder();
+        }
+
+        [Given(@"the sort by resource average rating option is not already descending")]
+        public void GivenTheSortByResourceAverageRatingOptionIsNotAlreadyDescending()
+        {
+            //click twice to trigger sort option and sort to make ascending (default is descending)
+            resourcePage.SortResourceAverageRating(2);
+        }
+
+        [Then(@"the resources should be sorted descending by average rating")]
+        public void ThenTheResourcesShouldBeSortedDescendingByAverageRating()
+        {
+            resourcePage
+                 .CaptureResourceListStarRatings()
+                 .Should()
+                 .BeInDescendingOrder();
+        }
     }
 }

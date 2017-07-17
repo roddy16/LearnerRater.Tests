@@ -376,6 +376,46 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Sort Resource Average Rating by Ascending")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "ResourcePage")]
+        public virtual void SortResourceAverageRatingByAscending()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Sort Resource Average Rating by Ascending", ((string[])(null)));
+#line 99
+this.ScenarioSetup(scenarioInfo);
+#line 100
+ testRunner.Given("I have selected \'Git\' as the category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 101
+  testRunner.And("the sort by resource average rating option is not already ascending", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 102
+ testRunner.When("I click the sort by resource average rating option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 103
+ testRunner.Then("the resources should be sorted ascending by average rating", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Sort Resource Average Rating by Descending")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "ResourcePage")]
+        public virtual void SortResourceAverageRatingByDescending()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Sort Resource Average Rating by Descending", ((string[])(null)));
+#line 105
+this.ScenarioSetup(scenarioInfo);
+#line 106
+ testRunner.Given("I have selected \'Git\' as the category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 107
+  testRunner.And("the sort by resource average rating option is not already descending", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 108
+ testRunner.When("I click the sort by resource average rating option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 109
+ testRunner.Then("the resources should be sorted descending by average rating", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

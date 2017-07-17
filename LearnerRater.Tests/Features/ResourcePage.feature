@@ -95,3 +95,15 @@ Scenario: Sort Resource Names by Descending
 		And the sort by resource name option is not already descending
 	When I click the sort by resource name option
 	Then the resources should be sorted descending by name
+
+Scenario: Sort Resource Average Rating by Ascending
+	Given I have selected 'Git' as the category
+		And the sort by resource average rating option is not already ascending
+	When I click the sort by resource average rating option
+	Then the resources should be sorted ascending by average rating
+	
+Scenario: Sort Resource Average Rating by Descending
+	Given I have selected 'Git' as the category
+		And the sort by resource average rating option is not already descending
+	When I click the sort by resource average rating option
+	Then the resources should be sorted descending by average rating

@@ -16,6 +16,7 @@ namespace LearnerRater.Tests.PageObjects
         private readonly WebDriverWait wait;
         private static string baseUrl = ConfigurationManager.AppSettings["BaseUrl"];
         private static string url = $"{baseUrl}/resources";
+        private static int maxStarRating = 5;
 
         public IWebElement ToggleReviewsButton => webDriver.FindElement(By.Id("btnToggleReviewVisibility"));
         public IWebElement AddReviewButton => webDriver.FindElement(By.Id("btnAddReview"));
@@ -38,7 +39,9 @@ namespace LearnerRater.Tests.PageObjects
         public IWebElement DeleteResourceButton(int resourceCount) => webDriver.FindElement(By.Id("deleteResource_" + (resourceCount - 1)));
         public IWebElement NumberOfResources => webDriver.FindElement(By.Id("numberOfResourcesBadge"));
         public IWebElement ResourceTitleName(int index) => webDriver.FindElement(By.CssSelector($"#app > div > div > div > div:nth-child(3) > div.resource-list-container > div:nth-child({index}) > div.resource-item__col-1 > div.resource-item__title > h1"));
+        public IList<IWebElement> ResourceStarRating(int index) => webDriver.FindElements(By.CssSelector($"#app > div > div > div > div:nth-child(3) > div.resource-list-container > div:nth-child({index}) > div.resource-item__col-2 > div.resource-item__average-rating > div > div > label.dv-star-rating-star.dv-star-rating-empty-star"));
         public IWebElement ResourceNameSort => webDriver.FindElement(By.Id("sortByNameButton"));
+        public IWebElement ResourceAverageRatingSort => webDriver.FindElement(By.Id("sortByAverageRatingButton"));
         public string FindResourceLink(string title) => webDriver.FindElement(By.LinkText(title)).GetAttribute("href");
 
 
@@ -249,15 +252,6 @@ namespace LearnerRater.Tests.PageObjects
             return webDriver.FindElement(By.ClassName("error")).Text;
         }
 
-        public string ResourceNameSortOrder()
-        {            
-            var titles = CaptureResourceList();
-
-            var ascendingList = titles.OrderBy(x => x);
-
-            return ascendingList.SequenceEqual(titles) ? "ascending" : "descending";
-        }
-
         public string[] CaptureResourceList()
         {
             string[] titles = new string[ResourceListItems.Count];
@@ -276,6 +270,26 @@ namespace LearnerRater.Tests.PageObjects
             {
                 ResourceNameSort.Click();
             }                       
+        }
+
+        public int[] CaptureResourceListStarRatings()
+        {
+            int[] starRatings = new int[ResourceListItems.Count];
+
+            for (int i = 0; i < ResourceListItems.Count; i++)
+            {
+                starRatings[i] = maxStarRating - ResourceStarRating(i + 1).Count();
+            }
+
+            return starRatings;
+        }
+
+        public void SortResourceAverageRating(int clickCount)
+        {
+            for (int i = 0; i < clickCount; i++)
+            {
+                ResourceAverageRatingSort.Click();
+            }
         }
     }
 }
