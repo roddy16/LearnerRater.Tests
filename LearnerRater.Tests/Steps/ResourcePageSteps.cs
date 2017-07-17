@@ -53,7 +53,7 @@ namespace LearnerRater.Tests.Steps
         [Given(@"I have clicked the Submit button")]
         public void WhenIClickTheSubmitButton()
         {
-            context.NumberOfReviewsBeforeAdd = resourcePage.GetNumberOfReviews();
+            context.NumberOfReviewsBeforeAction = resourcePage.GetNumberOfReviews();
             resourcePage.AddReviewSubmitButton();
         }
 
@@ -144,7 +144,7 @@ namespace LearnerRater.Tests.Steps
         public void ThenTheTotalCountOfReviewsForThatResourceShouldBeIncrementedBy1()
         {
             resourcePage
-                .GetReviewCountDifference(context.NumberOfReviewsBeforeAdd)
+                .GetReviewCountDifference(context.NumberOfReviewsBeforeAction)
                 .Should()
                 .Be(-1);
         }
@@ -180,8 +180,8 @@ namespace LearnerRater.Tests.Steps
         [When(@"I click the review Delete button")]
         public void WhenIClickTheReviewDeleteButton()
         {
-            context.NumberOfReviewsBeforeAdd = resourcePage.GetNumberOfReviews();
-            resourcePage.ClickDeleteReviewButton(context.NumberOfReviewsBeforeAdd);
+            context.NumberOfReviewsBeforeAction = resourcePage.GetNumberOfReviews();
+            resourcePage.ClickDeleteReviewButton(context.NumberOfReviewsBeforeAction);
         }
 
         [Then(@"the review should be deleted from the resource")]
@@ -197,24 +197,24 @@ namespace LearnerRater.Tests.Steps
         public void ThenTheTotalCountOfReviewsForThatResourceShouldBeReducedBy1()
         {
             resourcePage
-                .GetReviewCountDifference(context.NumberOfReviewsBeforeAdd)
+                .GetReviewCountDifference(context.NumberOfReviewsBeforeAction)
                 .Should()
                 .Be(1);
         }
 
-        //TODO: Add parameter to step to specific which resource to delete
+        //TODO: Add parameter to step to specify which resource to delete
         [When(@"I click the resource Delete button")]
         public void WhenIClickTheResourceDeleteButton()
         {
-            context.NumberOfResourcesBeforeAdd = resourcePage.GetNumberOfResources();
-            resourcePage.ClickDeleteResourceButton(context.NumberOfResourcesBeforeAdd);
+            context.NumberOfResourcesBeforeAction = resourcePage.GetNumberOfResources();
+            resourcePage.ClickDeleteResourceButton(context.NumberOfResourcesBeforeAction);
         }
 
         [Then(@"the total count of resources for that subject should be reduced by 1")]
         public void ThenTheTotalCountOfResourcesForThatSubjectShouldBeReducedBy1()
         {
             resourcePage
-                .GetResourceCountDifference(context.NumberOfResourcesBeforeAdd)
+                .GetResourceCountDifference(context.NumberOfResourcesBeforeAction)
                 .Should()
                 .Be(1);
         }

@@ -29,7 +29,7 @@ namespace LearnerRater.Tests.Steps
         [Given(@"I have clicked the Add Resource Link button")]
         public void WhenIClickTheAddResourceLinkButton()
         {
-            context.NumberOfResourcesBeforeAdd = resourcePage.GetNumberOfResources();
+            context.NumberOfResourcesBeforeAction = resourcePage.GetNumberOfResources();
             resourcePage.AddNewResource();
         }
         
@@ -69,7 +69,7 @@ namespace LearnerRater.Tests.Steps
         public void ThenTheAddNewResourceLinkFormShouldBeDisplayed()
         {
             resourcePage
-                .DoesAddResourceFormExist()
+                .IsAddResourceFormDisplayed()
                 .Should()
                 .BeTrue();
         }
@@ -96,7 +96,7 @@ namespace LearnerRater.Tests.Steps
         public void ThenTheTotalCountOfResourcesForThatSubjectShouldBeIncrementedBy1()
         {
             resourcePage
-                .GetResourceCountDifference(context.NumberOfResourcesBeforeAdd)
+                .GetResourceCountDifference(context.NumberOfResourcesBeforeAction)
                 .Should()
                 .Be(-1);
         }
@@ -117,7 +117,7 @@ namespace LearnerRater.Tests.Steps
             resourceSubjectsPage.NavigateTo();
 
             resourceSubjectsPage
-                .GetResourceCountDifference(subject, context.NumberOfResourcesBeforeAdd)
+                .GetResourceCountDifference(subject, context.NumberOfResourcesBeforeAction)
                 .Should()
                 .Be(-1);
         }

@@ -2,6 +2,7 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -39,7 +40,6 @@ namespace LearnerRater.Tests.PageObjects
         public IWebElement DeleteResourceButton(int resourceCount) => webDriver.FindElement(By.Id("deleteResource_" + (resourceCount - 1)));
         public IWebElement NumberOfResources => webDriver.FindElement(By.Id("numberOfResourcesBadge"));
         public IWebElement ResourceTitleName(int index) => webDriver.FindElement(By.CssSelector($"#app > div > div > div > div:nth-child(3) > div.resource-list-container > div:nth-child({index}) > div.resource-item__col-1 > div.resource-item__title > h1"));
-        public IList<IWebElement> ResourceStarRating(int index) => webDriver.FindElements(By.CssSelector($"#app > div > div > div > div:nth-child(3) > div.resource-list-container > div:nth-child({index}) > div.resource-item__col-2 > div.resource-item__average-rating > div > div > label.dv-star-rating-star.dv-star-rating-empty-star"));
         public IWebElement ResourceNameSort => webDriver.FindElement(By.Id("sortByNameButton"));
         public IWebElement ResourceAverageRatingSort => webDriver.FindElement(By.Id("sortByAverageRatingButton"));
         public string FindResourceLink(string title) => webDriver.FindElement(By.LinkText(title)).GetAttribute("href");
@@ -48,6 +48,7 @@ namespace LearnerRater.Tests.PageObjects
         public IList<IWebElement> UserReviews => webDriver.FindElements(By.CssSelector("div[id ^= 'reviewListContainer']"));
         public IList<IWebElement> ResourceList => webDriver.FindElements(By.CssSelector("#app > div > div > div > div:nth-child(3) > div.resource-list-container"));
         public IList<IWebElement> ResourceListItems => webDriver.FindElements(By.CssSelector($"#app > div > div > div > div:nth-child(3) > div.resource-list-container > div"));
+        public IList<IWebElement> ResourceStarRating(int index) => webDriver.FindElements(By.CssSelector($"#app > div > div > div > div:nth-child(3) > div.resource-list-container > div:nth-child({index}) > div.resource-item__col-2 > div.resource-item__average-rating > div > div > label.dv-star-rating-star.dv-star-rating-empty-star"));
 
         public ResourcePage(IWebDriver webDriver, WebDriverWait wait)
         {
@@ -144,11 +145,11 @@ namespace LearnerRater.Tests.PageObjects
             return this;
         }
 
-        public int GetReviewCountDifference(int numberOfReviewsBeforeAdd)
+        public int GetReviewCountDifference(int numberOfReviewsBeforeAction)
         {
             int reviewCount = GetNumberOfReviews();
 
-            return numberOfReviewsBeforeAdd - reviewCount;
+            return numberOfReviewsBeforeAction - reviewCount;
         }
 
         public int GetNumberOfReviews()
@@ -163,11 +164,6 @@ namespace LearnerRater.Tests.PageObjects
             AddNewResourceLinkButton.Click();
 
             return this;
-        }
-
-        public bool DoesAddResourceFormExist()
-        {
-            return webDriver.FindElements(By.ClassName("form--add-resource")).Count > 0;
         }
 
         public ResourcePage AddResourceFields(Resource resource)
@@ -208,11 +204,11 @@ namespace LearnerRater.Tests.PageObjects
 
         }
 
-        public int GetResourceCountDifference(int numberOfResourcesBeforeAdd)
+        public int GetResourceCountDifference(int numberOfResourcesBeforeAction)
         {
             int resourceCount = GetNumberOfResources();
 
-            return numberOfResourcesBeforeAdd - resourceCount;
+            return numberOfResourcesBeforeAction - resourceCount;
         }
 
         public int GetNumberOfResources()
@@ -252,44 +248,48 @@ namespace LearnerRater.Tests.PageObjects
             return webDriver.FindElement(By.ClassName("error")).Text;
         }
 
-        public string[] CaptureResourceList()
+        public IList<string> CaptureResourceList()
         {
-            string[] titles = new string[ResourceListItems.Count];
+            IList<string> titles = new List<string>();
 
-            for (int i = 0; i < ResourceListItems.Count; i++)
+            for (int i = 1; i <= ResourceListItems.Count; i++)
             {
-                titles[i] = $"{ResourceTitleName(i + 1).Text}";
+                titles.Add(ResourceTitleName(i).Text);
             }
 
             return titles;
         }
 
-        public void SortResourceName(int clickCount)
+        public ResourcePage SortResourceName(int clickCount)
         {
             for (int i = 0; i < clickCount; i++)
             {
                 ResourceNameSort.Click();
-            }                       
+            }
+
+            return this;                 
         }
 
-        public int[] CaptureResourceListStarRatings()
+        public IList<int> CaptureResourceListStarRatings()
         {
-            int[] starRatings = new int[ResourceListItems.Count];
+            IList<int> starRatings = new List<int>();
 
-            for (int i = 0; i < ResourceListItems.Count; i++)
+            for (int i = 1; i <= ResourceListItems.Count; i++)
             {
-                starRatings[i] = maxStarRating - ResourceStarRating(i + 1).Count();
+                starRatings.Add(maxStarRating - ResourceStarRating(i).Count());
             }
 
             return starRatings;
         }
 
-        public void SortResourceAverageRating(int clickCount)
+        public ResourcePage SortResourceAverageRating(int clickCount)
         {
             for (int i = 0; i < clickCount; i++)
             {
                 ResourceAverageRatingSort.Click();
             }
+
+            return this;
         }
     }
 }
