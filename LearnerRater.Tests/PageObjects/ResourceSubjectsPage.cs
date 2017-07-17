@@ -35,14 +35,12 @@ namespace LearnerRater.Tests.PageObjects
             return new ResourcePage(webDriver, wait);
         }
 
-        public int GetResourceCountDifference(string subject, string key)
+        public int GetResourceCountDifference(string subject, int numberOfResourcesBeforeAdd)
         {
-            int beforeActionCount = (int)ScenarioContext.Current[key];
-
             var subjectBadgeValue = webDriver.FindElement(By.PartialLinkText(subject)).FindElement(By.ClassName("badge"));
             int resourceCount = Convert.ToInt32(subjectBadgeValue.Text);       
 
-            return beforeActionCount - resourceCount;
+            return numberOfResourcesBeforeAdd - resourceCount;
         }
     }
 }

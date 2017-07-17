@@ -7,7 +7,5 @@ namespace LearnerRater.Tests.Contexts
         public Resource Resource { get; set; }
         public int NumberOfResourcesBeforeAdd { get; set; }
         public int NumberOfReviewsBeforeAdd { get; set; }
-        public string SortOrder { get; set; }
-
     }
 }

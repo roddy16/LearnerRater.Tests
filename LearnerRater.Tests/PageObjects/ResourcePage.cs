@@ -155,12 +155,6 @@ namespace LearnerRater.Tests.PageObjects
             return Convert.ToInt32(numberOfReviews[1]);
         }
         
-        ////TODO: should change the object to a generic
-        //public void AddToScenarioContext(string index, object value)
-        //{
-        //    ScenarioContext.Current.Add(index, value);
-        //}
-
         public ResourcePage AddNewResource()
         {
             AddNewResourceLinkButton.Click();
@@ -276,18 +270,12 @@ namespace LearnerRater.Tests.PageObjects
             return titles;
         }
 
-        public void SortResourceName(string sortOrder)
+        public void SortResourceName(int clickCount)
         {
-            if (sortOrder.Equals("ascending"))
-            {
-                //the default is ascending so doing a double click so it goes from asc to desc to asc
-                ResourceNameSort.Click();
-                ResourceNameSort.Click();
-            }
-            else
+            for (int i = 0; i < clickCount; i++)
             {
                 ResourceNameSort.Click();
-            }
+            }                       
         }
     }
 }

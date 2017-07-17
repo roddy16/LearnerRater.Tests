@@ -240,14 +240,15 @@ namespace LearnerRater.Tests.Steps
 
         [Given(@"the sort by resource name option is not already ascending")]
         public void GivenTheSortByResourceNameOptionIsNotAlreadyAscending()
-        {
-            context.SortOrder = resourcePage.ResourceNameSortOrder();        
+        {          
+            //click once to sort descending
+            resourcePage.SortResourceName(1);
         }
 
         [When(@"I click the sort by resource name option")]
         public void WhenIClickTheSortByResourceNameOption()
         {
-            resourcePage.SortResourceName(context.SortOrder);
+            resourcePage.SortResourceName(1);
         }
 
         [Then(@"the resources should be sorted ascending by name")]
@@ -261,15 +262,18 @@ namespace LearnerRater.Tests.Steps
 
         [Given(@"the sort by resource name option is not already descending")]
         public void GivenTheSortByResourceNameOptionIsNotAlreadyDescending()
-        {
-            ScenarioContext.Current.Pending();
+        {         
+            //click twice to sort ascending
+            resourcePage.SortResourceName(2);
         }
 
         [Then(@"the resources should be sorted descending by name")]
         public void ThenTheResourcesShouldBeSortedDescendingByName()
         {
-            ScenarioContext.Current.Pending();
+            resourcePage
+                .CaptureResourceList()
+                .Should()
+                .BeInDescendingOrder();
         }
-
     }
 }

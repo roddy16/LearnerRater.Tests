@@ -117,7 +117,7 @@ namespace LearnerRater.Tests.Steps
             resourceSubjectsPage.NavigateTo();
 
             resourceSubjectsPage
-                .GetResourceCountDifference(subject, "BeforeAdd")
+                .GetResourceCountDifference(subject, context.NumberOfResourcesBeforeAdd)
                 .Should()
                 .Be(-1);
         }
