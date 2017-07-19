@@ -46,7 +46,6 @@ namespace LearnerRater.Tests.PageObjects
 
 
         public IList<IWebElement> UserReviews => webDriver.FindElements(By.CssSelector("div[id ^= 'reviewListContainer']"));
-        public IList<IWebElement> ErrorMessage => webDriver.FindElements(By.ClassName("error"));
         public IList<IWebElement> ResourceList => webDriver.FindElements(By.CssSelector("#app > div > div > div > div:nth-child(3) > div.resource-list-container"));
         public IList<IWebElement> ResourceListItems => webDriver.FindElements(By.CssSelector($"#app > div > div > div > div:nth-child(3) > div.resource-list-container > div"));
 
@@ -65,7 +64,7 @@ namespace LearnerRater.Tests.PageObjects
 
         public bool IsCorrectResourcePageDisplayed(string subject)
         {
-            return webDriver.Url.Equals($"{baseUrl}/resources/{subject}");
+            return webDriver.Url.Equals(baseUrl + "/resources/" + subject);
         }
 
         public ResourcePage ToggleReviews()
@@ -203,9 +202,10 @@ namespace LearnerRater.Tests.PageObjects
 
         public bool IsSuccessfullyCreateResourceListed(Resource resource)
         {
-            var resourceLink = FindResourceLink(resource.Title);
+            var resourceLink = webDriver.FindElement(By.LinkText(resource.Title)).GetAttribute("href");
 
             return IsResourceListed(resource) && resource.Link.Equals(resourceLink);
+
         }
 
         public int GetResourceCountDifference(int numberOfResourcesBeforeAdd)
@@ -244,12 +244,12 @@ namespace LearnerRater.Tests.PageObjects
 
         public int ErrorMessageCount()
         {
-            return ErrorMessage.Count;
+            return webDriver.FindElements(By.ClassName("error")).Count;
         }
 
         public string ErrorMessageText()
         {
-            return ErrorMessage[0].Text;
+            return webDriver.FindElement(By.ClassName("error")).Text;
         }
 
         public string[] CaptureResourceList()
