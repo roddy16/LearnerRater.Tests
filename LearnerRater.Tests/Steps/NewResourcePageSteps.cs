@@ -69,7 +69,7 @@ namespace LearnerRater.Tests.Steps
         public void ThenTheAddNewResourceLinkFormShouldBeDisplayed()
         {
             resourcePage
-                .DoesAddResourceFormExist()
+                .IsAddResourceFormDisplayed()
                 .Should()
                 .BeTrue();
         }
