@@ -1,6 +1,8 @@
 ﻿<SolutionConfiguration>
   <Settings>
+    <AdditionalFilesToIncludeForSolution />
     <AllowParallelTestExecution>False</AllowParallelTestExecution>
+    <AllowTestsToRunInParallelWithThemselves>False</AllowTestsToRunInParallelWithThemselves>
     <SolutionConfigured>True</SolutionConfigured>
   </Settings>
 </SolutionConfiguration>

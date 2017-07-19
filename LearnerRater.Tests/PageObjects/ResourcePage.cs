@@ -46,6 +46,7 @@ namespace LearnerRater.Tests.PageObjects
 
 
         public IList<IWebElement> UserReviews => webDriver.FindElements(By.CssSelector("div[id ^= 'reviewListContainer']"));
+        public IList<IWebElement> ErrorMessage => webDriver.FindElements(By.ClassName("error"));
         public IList<IWebElement> ResourceList => webDriver.FindElements(By.CssSelector("#app > div > div > div > div:nth-child(3) > div.resource-list-container"));
         public IList<IWebElement> ResourceListItems => webDriver.FindElements(By.CssSelector($"#app > div > div > div > div:nth-child(3) > div.resource-list-container > div"));
         public IList<IWebElement> ResourceStarRating(int index) => webDriver.FindElements(By.CssSelector($"#app > div > div > div > div:nth-child(3) > div.resource-list-container > div:nth-child({index}) > div.resource-item__col-2 > div.resource-item__average-rating > div > div > label.dv-star-rating-star.dv-star-rating-empty-star"));
@@ -65,7 +66,7 @@ namespace LearnerRater.Tests.PageObjects
 
         public bool IsCorrectResourcePageDisplayed(string subject)
         {
-            return webDriver.Url.Equals(baseUrl + "/resources/" + subject);
+            return webDriver.Url.Equals($"{baseUrl}/resources/{subject}");
         }
 
         public ResourcePage ToggleReviews()
@@ -198,10 +199,9 @@ namespace LearnerRater.Tests.PageObjects
 
         public bool IsSuccessfullyCreateResourceListed(Resource resource)
         {
-            var resourceLink = webDriver.FindElement(By.LinkText(resource.Title)).GetAttribute("href");
+            var resourceLink = FindResourceLink(resource.Title);
 
             return IsResourceListed(resource) && resource.Link.Equals(resourceLink);
-
         }
 
         public int GetResourceCountDifference(int numberOfResourcesBeforeAction)
@@ -240,12 +240,12 @@ namespace LearnerRater.Tests.PageObjects
 
         public int ErrorMessageCount()
         {
-            return webDriver.FindElements(By.ClassName("error")).Count;
+            return ErrorMessage.Count;
         }
 
         public string ErrorMessageText()
         {
-            return webDriver.FindElement(By.ClassName("error")).Text;
+            return ErrorMessage[0].Text;
         }
 
         public IList<string> CaptureResourceList()
